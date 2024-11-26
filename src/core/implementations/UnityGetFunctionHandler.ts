@@ -1,4 +1,4 @@
-import IFunctionHandler from "@interfaces/IFunctionHandler";
+import IFunctionHandler from "../interfaces/IFunctionHandler";
 
 export default class UnityGetFunctionHandler implements IFunctionHandler {
   public GetImplementation(): () => void {

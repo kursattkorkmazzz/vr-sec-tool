@@ -2,16 +2,22 @@
   "name": "vr-sec-tool",
   "version": "1.0.0",
   "scripts": {
-    "start": "node --import=tsx src/main.ts",
-    "start:watch": "node --import=tsx --watch src/main.ts"
+    "start:node": "node --import=tsx ./src/main.ts",
+    "watch:node": "node --import=tsx --watch ./src/main.ts",
+    "watch:frida": "frida-compile ./src/main.ts -o dist/agent.js -w",
+    "build:frida": "frida-compile ./src/main.ts -o dist/agent.js -c"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/frida-gum": "^18.7.1",
+    "@types/node": "^22.10.0",
+    "frida-il2cpp-bridge": "^0.9.1",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
+    "frida-compile": "^16.4.1",
     "tsx": "^4.19.2"
   }
 }
