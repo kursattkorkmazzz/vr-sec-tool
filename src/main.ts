@@ -1,4 +1,4 @@
-import UnityGetFunctionHandler from "@implementations/UnityGetFunctionHandler";
+import UnityGetFunctionHandler from "./core/implementations/UnityGetFunctionHandler";
 
 (async () => {
   console.log("Main function called.");
