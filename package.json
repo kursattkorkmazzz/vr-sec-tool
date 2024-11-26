@@ -1,0 +1,17 @@
+{
+  "name": "vr-sec-tool",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node --import=tsx src/main.ts",
+    "start:watch": "node --import=tsx --watch src/main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  }
+}
