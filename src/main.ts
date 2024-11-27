@@ -1,7 +1,5 @@
-import UnityGetFunctionHandler from "./core/implementations/UnityGetFunctionHandler";
+import "frida-il2cpp-bridge";
 
-(async () => {
-  console.log("Main function called.");
-  const unityGetFunctionHandler = new UnityGetFunctionHandler();
-  const implementation = unityGetFunctionHandler.GetImplementation();
-})();
+Il2Cpp.perform(() => {
+  console.log("Modding operation is started.");
+});
