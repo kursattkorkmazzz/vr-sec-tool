@@ -1,8 +1,11 @@
 import "frida-il2cpp-bridge";
-import UnityGetFunctionHandler from "./core/implementations/UnityGetFunctionHandler";
+const URL = require("@frida/url");
 
-const handler = new UnityGetFunctionHandler();
-handler.GetImplementation();
+import UnityNetworkingPlatform from "./core/platform/UnityNetworkingPlatform";
+
 Il2Cpp.perform(() => {
-  console.log("Modding operation is started.");
+  const unityNetworkingPlatform = new UnityNetworkingPlatform();
+  unityNetworkingPlatform.handleFunctions();
+
+  ///Il2Cpp.trace(true).classes(UnityWebRequest).and().attach();
 });
