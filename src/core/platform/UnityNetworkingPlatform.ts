@@ -18,10 +18,11 @@ export default class UnityNetworkingPlatform implements IPlatform {
 
   handleFunctions(): void {
     this.postFunctionHandler();
+    this.getFunctionHandler();
   }
 
   private postFunctionHandler() {
-    console.log("Post Function is injecting...");
+    console.log("[Unity Networking] Post Function is injecting...");
 
     const PostFormMethod: Il2Cpp.Method =
       this.UnityWebRequest.method("PostWwwForm");
@@ -29,12 +30,24 @@ export default class UnityNetworkingPlatform implements IPlatform {
     PostFormMethod.implementation = (
       ...parameters: Il2Cpp.Parameter.Type[]
     ) => {
-      this.authorizator.authorize(parameters);
-
-      const result = PostFormMethod.invoke(...parameters);
+      const isAuthorized: boolean = this.authorizator.authorize(parameters[0]);
+      if (!isAuthorized) {
+        return;
+      }
+      let result: Il2Cpp.Method.ReturnType = PostFormMethod.invoke(
+        ...parameters
+      );
       return result;
     };
+    console.log("[Unity Networking] Post Function is injected.");
+  }
 
-    console.log("Post Function is injected.");
+  private getFunctionHandler() {
+    console.log("[Unity Networking] Get Function is injecting...");
+
+    const GetMethod: Il2Cpp.Method = this.UnityWebRequest.method("Get");
+    GetMethod.implementation = (...parameters: Il2Cpp.Parameter.Type[]) => {
+      //TODO GetMethod implementation will be write!
+    };
   }
 }
