@@ -1,6 +1,7 @@
 import WhitelistAuthorizator from "../authorizators/WhitelistAuthorizator";
 import IAuthorizator from "../interfaces/IAuthorizator";
 import IPlatform from "../interfaces/IPlatform";
+import UploadHandlerPayloadReader from "../utils/UploadHandlerPayloadReader";
 
 export default class UnityNetworkingPlatform implements IPlatform {
   UnityWebRequestAssembly: Il2Cpp.Image;
@@ -31,23 +32,27 @@ export default class UnityNetworkingPlatform implements IPlatform {
       ...parameters: Il2Cpp.Parameter.Type[]
     ) => {
       const isAuthorized: boolean = this.authorizator.authorize(parameters[0]);
+
       if (!isAuthorized) {
         return;
       }
       let result: Il2Cpp.Method.ReturnType = PostFormMethod.invoke(
         ...parameters
       );
+
       return result;
     };
     console.log("[Unity Networking] Post Function is injected.");
   }
 
   private getFunctionHandler() {
+    /*
     console.log("[Unity Networking] Get Function is injecting...");
 
-    const GetMethod: Il2Cpp.Method = this.UnityWebRequest.method("Get");
+    
+    const GetMethod: Il2Cpp.Method = this.UnityWebRequest.method("Get"); // TODO When methods are not found, take handle errors.
     GetMethod.implementation = (...parameters: Il2Cpp.Parameter.Type[]) => {
       //TODO GetMethod implementation will be write!
-    };
+    };*/
   }
 }
