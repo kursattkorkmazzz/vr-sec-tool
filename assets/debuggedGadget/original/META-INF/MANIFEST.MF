@@ -1,0 +1,62 @@
+Manifest-Version: 1.0
+
+Name: AndroidManifest.xml
+SHA-256-Digest: H5bYiuc+pEqtqRKI00K9JwRbIZ61I/4ZyLuvAvstPno=
+
+Name: assets/bin/Data/Managed/Metadata/global-metadata.dat
+SHA-256-Digest: V6fLZqYGwj5wvWmmPHEqBvKYNSb2jWWuWNGLlFYpKWY=
+
+Name: assets/bin/Data/Managed/Resources/mscorlib.dll-resources.dat
+SHA-256-Digest: xbqhdqW3LNVFJmNA5CEC05Ol5D04yVeWvIKJGLuVJ38=
+
+Name: assets/bin/Data/RuntimeInitializeOnLoads.json
+SHA-256-Digest: 9alKAnnFpt/8D5efc0nWmp4c6/hBTe22AWjbvlWOhYA=
+
+Name: assets/bin/Data/ScriptingAssemblies.json
+SHA-256-Digest: tJFcy99EUZjxdBcWfFq9PaJkNbdWFh3/hAiS6KOWpHk=
+
+Name: assets/bin/Data/boot.config
+SHA-256-Digest: 0FK2qejWVmYxrxtd9ZfhV6oL8RTAxce5j2UOLyQS6EM=
+
+Name: assets/bin/Data/data.unity3d
+SHA-256-Digest: FpxAUOR4H6mNyy6UA9SfAI0NBp64MFJG22GrCOwRuz0=
+
+Name: assets/bin/Data/unity default resources
+SHA-256-Digest: EGpnBvnUJvT3gXv+riAsAvpZmUtwHtqWS1WFIiqdQRw=
+
+Name: assets/bin/Data/unity_app_guid
+SHA-256-Digest: W7KiI2HhYDIiR2yGKjSlB1mhE4nUpDE9m0BhbdHGq30=
+
+Name: classes.dex
+SHA-256-Digest: qlTqn0+WkN1+2sSpBul8lPaoLAXkQW34v5QeWCrT9Z4=
+
+Name: lib/arm64-v8a/libfrida-gadget-16.5.2-android-arm64.so
+SHA-256-Digest: QqjcrqKdrmstnNT/W6zVk6f0MgjeDSeOyXP+oPwyntg=
+
+Name: lib/arm64-v8a/libil2cpp.so
+SHA-256-Digest: SnRb+KacI69C6hmLpWGR2TiTVIwHKCL4XjmYZU3nT6U=
+
+Name: lib/arm64-v8a/libmain.so
+SHA-256-Digest: VrwSXLriY8O6mSJUY/Vzt9DTeC7sJN2h3DKRLL+g5V4=
+
+Name: lib/arm64-v8a/libunity.so
+SHA-256-Digest: K1cQtF7jtBtOXpBIeD89wTWqcnf9YubEdfqx6mUfBaE=
+
+Name: res/mipmap-anydpi/app_icon.xml
+SHA-256-Digest: R/mGVMQpP6qPINg57Vc7C71zv+oyyn8Jjgs4V2PGnls=
+
+Name: res/mipmap-anydpi/app_icon_round.xml
+SHA-256-Digest: R/mGVMQpP6qPINg57Vc7C71zv+oyyn8Jjgs4V2PGnls=
+
+Name: res/mipmap-mdpi/app_icon.png
+SHA-256-Digest: Up4XOulYR1OzwYKGSsa4uoCcbasJrtd7IXGExnxhxeQ=
+
+Name: res/mipmap-mdpi/ic_launcher_background.png
+SHA-256-Digest: aoEB2mIfSfstQv7ZggEIix00fIkGVtcEfrWLNBSojrc=
+
+Name: res/mipmap-mdpi/ic_launcher_foreground.png
+SHA-256-Digest: DVDUZato4DP4EI7+4Keyi3jLzMt4ho8eAGDkELDNZLg=
+
+Name: resources.arsc
+SHA-256-Digest: QPLx758X9g0yQTvKOt4guk9M2mVeOhArB2KuK3WgPVA=
+
