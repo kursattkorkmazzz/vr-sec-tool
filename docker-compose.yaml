@@ -1,0 +1,7 @@
+services:
+
+  # Service 1
+  backend:
+    image: kursattkorkmazzz/vr-test-backend
+    ports:
+      - "3000:3000"

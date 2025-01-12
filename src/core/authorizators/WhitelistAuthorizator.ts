@@ -4,6 +4,12 @@ import QuateTrimmer from "../utils/QuateTrimmer";
 const URL = require("@frida/url");
 
 export default class WhitelistAuthorizator implements IAuthorizator {
+  /**
+   * Authorizes a given URI by checking it against a whitelist of hosts.
+   *
+   * @param uri - The URI to be authorized.
+   * @returns A boolean indicating whether the URI is authorized.
+   */
   authorize(uri: String): boolean {
     let isAuthorized = false;
     const targetUri = String(QuateTrimmer(uri));
