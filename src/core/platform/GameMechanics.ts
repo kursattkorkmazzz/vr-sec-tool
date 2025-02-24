@@ -23,9 +23,7 @@ export default class GameMechanics implements IPlatform {
     const SetArmor = this.GameClass.method("SetArmor");
     SetArmor.implementation = function (...params:Il2Cpp.Parameter.Type[]) {
       console.log("SetArmor was called with params: ", params);
-      this.method<void>("SetArmor").invoke(
-        10000,
-    );
+      this.method<void>("SetArmor").invoke(10000);
     }
   }
 
