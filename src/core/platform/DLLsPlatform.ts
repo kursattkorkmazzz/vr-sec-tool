@@ -1,44 +1,70 @@
 import IPlatform from "../interfaces/IPlatform";
 
 export default class DLLs implements IPlatform {
-  NetworkAssemblies: Il2Cpp.Assembly[];
+  Assemblies: Il2Cpp.Assembly[];
   constructor() {
-    this.NetworkAssemblies = Il2Cpp.domain.assemblies;
+    this.Assemblies = Il2Cpp.domain.assemblies;
   };
 
   handleFunctions(): void {
-    this.listenNetworkClasses();
+    //web, http, network
+    const classFilters = ["http", "network", "web"];
+    const methodFilters = ["post","set","send"];
+    const parameterFilters = ["url", "uri"];
+    //this.listenFilteredClasses(classFilters);
+    //this.listenFilteredMethods(classFilters,methodFilters);
+    this.listenFilteredParameters(classFilters,parameterFilters);
     return;
   }
 
-  private listenAllDlls():void{
+  private listenAllDlls(): void {
     Il2Cpp.trace(true).assemblies(...Il2Cpp.domain.assemblies).and().attach();
   }
 
-  private listenNetworkClasses():void {
-    let  NetworkClasses:Il2Cpp.Class[] = [];
-    this.NetworkAssemblies.forEach((assembly) => {
-      assembly.image.classes.forEach((klass) =>{
-        if(klass.name.toLowerCase().includes("http")|| klass.name.toLowerCase().includes("network") || klass.name.toLowerCase().includes("web") ){
-          NetworkClasses.push(klass);
-        }
-      })
-    })
-    if (!NetworkClasses) {
-      console.log("NetworkClasses is null or undefined");
-      return;
+  // Do more partical and adjustmen
+  private listenFilteredClasses(filters: string[]): void {
+    Il2Cpp.trace(true)
+    .assemblies(...this.Assemblies)
+    .filterClasses((klass) => this.isItIncludesClass(filters, klass))
+    .and()
+    .attach();
   }
 
-  // Check if array is empty
-  if (NetworkClasses.length === 0) {
-      console.log("No network classes found");
-      return;
-  }
-    console.log("Finding Classes \n :");
-    NetworkClasses.forEach((klass) => {
-      console.log(klass.name);
-    })
-    Il2Cpp.trace(true).classes(...NetworkClasses).and().attach();
+  private listenFilteredMethods(classFilters:string[],methodFilters: string[]): void {
+    Il2Cpp.trace(true)
+    .assemblies(...this.Assemblies)
+    .filterClasses((klass) => this.isItIncludesClass(classFilters, klass))
+    .filterMethods((method) => this.isItIncludesMethod(methodFilters, method))
+    .and()
+    .attach();
   }
 
-};
+  private listenFilteredParameters(classFilters: string[],parameterFilters: string[]): void {
+    Il2Cpp.trace(true)
+    .assemblies(...this.Assemblies)
+    .filterClasses((klass) => this.isItIncludesClass(classFilters, klass))
+    .filterParameters((parameter) => this.isItIncludesParameter(parameterFilters, parameter))
+    .and()
+    .attach();
+  }
+  private isItIncludesClass(filters: string[], klass: Il2Cpp.Class): boolean {
+    if(filters.some(filter => klass.name.toLowerCase().includes(filter))) {
+      return true;
+    }
+    return false;
+  }
+
+  private isItIncludesMethod(filters: string[], method: Il2Cpp.Method): boolean {
+    if(filters.some(filter => method.name.toLowerCase().includes(filter))) {
+      return true;
+    }
+    return false;
+  }
+
+  private isItIncludesParameter(filters: string[], parameter: Il2Cpp.Parameter): boolean {
+    if(filters.some(filter => parameter.name.toLowerCase().includes(filter))) {
+      return true;
+    }
+    return false;
+  }
+}
