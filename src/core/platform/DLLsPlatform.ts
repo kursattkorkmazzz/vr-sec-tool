@@ -1,4 +1,9 @@
+import { get } from "http";
 import IPlatform from "../interfaces/IPlatform";
+import Logger from "../utils/Logger";
+import { log } from "console";
+import UploadHandlerPayloadReader from "../utils/UploadHandlerPayloadReader";
+import UriPayloadReader from "../utils/UriPayloadReader";
 
 /**
  * TODO:
@@ -12,18 +17,21 @@ import IPlatform from "../interfaces/IPlatform";
 
 export default class DLLs implements IPlatform {
   Assemblies: Il2Cpp.Assembly[];
+
+  classFilters = ["http", "network", "web"];
+  methodFilters = ["sent", "post", "get", "upload"];
+  parameterFilters = ["uri", "url"];
+
   constructor() {
     this.Assemblies = Il2Cpp.domain.assemblies;
   }
 
   handleFunctions(): void {
     //web, http, network
-    const classFilters = ["http", "network", "web"];
-    const methodFilters = ["post", "set", "send"];
-    const parameterFilters = ["url", "uri"];
-    //this.listenFilteredClasses(classFilters);
-    //this.listenFilteredMethods(classFilters,methodFilters);
-    this.listenFilteredParameters(classFilters, parameterFilters);
+
+    // this.listenFilteredClasses(classFilters);
+    this.listenFilteredMethods(this.classFilters, this.methodFilters);
+    //this.listenFilteredParameters(classFilters, parameterFilters);
     return;
   }
 
@@ -47,10 +55,38 @@ export default class DLLs implements IPlatform {
     classFilters: string[],
     methodFilters: string[]
   ): void {
+    const filteredClasses: Il2Cpp.Class[] = [];
+
     Il2Cpp.trace(true)
       .assemblies(...this.Assemblies)
       .filterClasses((klass) => this.isItIncludesClass(classFilters, klass))
-      .filterMethods((method) => this.isItIncludesMethod(methodFilters, method))
+      .filterMethods((method) => {
+        if (this.isItIncludesMethod(methodFilters, method)) {
+          if (method.virtualAddress.toInt32() != 0) {
+            Interceptor.attach(method.virtualAddress, {
+              onEnter(args) {
+                const instance = new Il2Cpp.Object(args[0]);
+
+                const postPayload = UploadHandlerPayloadReader(instance);
+                const getPayload = UriPayloadReader(instance);
+
+                console.log(instance.field("m_Uri", true).value);
+
+                if (postPayload != "") {
+                  Logger.log("POST Payload: " + postPayload);
+                }
+
+                if (getPayload != "") {
+                  Logger.log("GET Payload: " + getPayload);
+                }
+              },
+            });
+          }
+
+          return true;
+        }
+        return false;
+      })
       .and()
       .attach();
   }
@@ -68,8 +104,13 @@ export default class DLLs implements IPlatform {
       .and()
       .attach();
   }
+
   private isItIncludesClass(filters: string[], klass: Il2Cpp.Class): boolean {
-    if (filters.some((filter) => klass.name.toLowerCase().includes(filter))) {
+    if (
+      filters.some((filter) =>
+        klass.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    ) {
       return true;
     }
     return false;
@@ -79,7 +120,11 @@ export default class DLLs implements IPlatform {
     filters: string[],
     method: Il2Cpp.Method
   ): boolean {
-    if (filters.some((filter) => method.name.toLowerCase().includes(filter))) {
+    if (
+      filters.some((filter) =>
+        method.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    ) {
       return true;
     }
     return false;
@@ -90,7 +135,9 @@ export default class DLLs implements IPlatform {
     parameter: Il2Cpp.Parameter
   ): boolean {
     if (
-      filters.some((filter) => parameter.name.toLowerCase().includes(filter))
+      filters.some((filter) =>
+        parameter.name.toLowerCase().includes(filter.toLowerCase())
+      )
     ) {
       return true;
     }

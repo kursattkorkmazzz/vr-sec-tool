@@ -20,14 +20,12 @@ export default class UnityNetworkingPlatform implements IPlatform {
   }
 
   handleFunctions(): void {
-     // this.postFunctionHandler();
+    // this.postFunctionHandler();
     // this.getFunctionHandler();
-    
-    
+
     this.set_uriHandler();
     this.get_urlHandler();
-    //this.postFunctionHandler();
-    //this.getFunctionHandler();
+
     Il2Cpp.trace(true).classes(this.UnityWebRequest).and().attach();
     return;
   }
@@ -75,7 +73,6 @@ export default class UnityNetworkingPlatform implements IPlatform {
   }
 
   private getFunctionHandler() {
-  
     const GetMethod = this.UnityWebRequest.method("Get");
 
     GetMethod.implementation = (...parameters: Il2Cpp.Parameter.Type[]) => {
@@ -92,32 +89,38 @@ export default class UnityNetworkingPlatform implements IPlatform {
 
   private set_urlHandler() {
     const setUrlMethod = this.UnityWebRequest.method<void>("set_url");
-    setUrlMethod.implementation = function (...parameters: Il2Cpp.Parameter.Type[]) {
-      const string = Il2Cpp.string("Test");      
+    setUrlMethod.implementation = function (
+      ...parameters: Il2Cpp.Parameter.Type[]
+    ) {
+      const string = Il2Cpp.string("Test");
       console.log("set_url was called with params: ", parameters);
       const result = this.method<void>("set_url").invoke(string);
       console.log("Set Result: ", result);
       //return this.method<void>("set_url").invoke(string);
-    }
+    };
   }
 
   private set_uriHandler() {
     const setUriMethod = this.UnityWebRequest.method<void>("set_uri");
-    setUriMethod.implementation = function (...parameters: Il2Cpp.Parameter.Type[]) {
-      const string = Il2Cpp.string("Test");      
+    setUriMethod.implementation = function (
+      ...parameters: Il2Cpp.Parameter.Type[]
+    ) {
+      const string = Il2Cpp.string("Test");
       console.log("set_uri was called with params: ", parameters);
       const result = this.method<void>("set_uri").invoke(parameters[0]);
       console.log("SetURI Result: ", result);
       //return this.method<void>("set_url").invoke(string);
-    }
+    };
   }
   private get_urlHandler() {
     const getUrlMethod = this.UnityWebRequest.method<void>("get_url");
-    getUrlMethod.implementation = function (...parameters: Il2Cpp.Parameter.Type[]) {
+    getUrlMethod.implementation = function (
+      ...parameters: Il2Cpp.Parameter.Type[]
+    ) {
       console.log("set_url was called with params: ", parameters);
       const result = this.method<void>("get_url").invoke();
       console.log("Get Result: ", result);
-      return
-    }
+      return;
+    };
   }
 }
