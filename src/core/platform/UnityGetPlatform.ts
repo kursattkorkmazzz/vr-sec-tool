@@ -4,7 +4,7 @@ import IPlatform from "../interfaces/IPlatform";
 import Logger from "../utils/Logger";
 import UploadHandlerPayloadReader from "../utils/UploadHandlerPayloadReader";
 
-export default class UnityAnalyticsPlatform implements IPlatform {
+export default class UnityGetPlatform implements IPlatform {
   UnityAnalyticsInternalAssembly: Il2Cpp.Image;
   WebRequestHelper: Il2Cpp.Class;
   CreateWebRequest: Il2Cpp.Method;
@@ -31,11 +31,7 @@ export default class UnityAnalyticsPlatform implements IPlatform {
     this.CreateWebRequest.implementation = function (this,...params: Il2Cpp.Parameter.Type[]) {
       const url = Il2Cpp.string("https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistol");
       const type = Il2Cpp.string("POST");
-      const payload = Il2Cpp.array<number>( Il2Cpp.corlib.class("Sytem.Byte"), [1, 2, 3, 4]);
-
-      
-
-      return this.method("CreateWebRequest").invoke( url,type,payload );
+      return this.method("CreateWebRequest").invoke( url,type,params[2] );
     };
   }
 }

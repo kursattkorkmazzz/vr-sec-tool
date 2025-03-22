@@ -1,28 +1,14 @@
 import IPlatform from "../interfaces/IPlatform";
 
-export default class DLLs implements IPlatform {
-  Assemblies: Il2Cpp.Assembly[];
-  constructor() {
-    this.Assemblies = Il2Cpp.domain.assemblies;
-  };
+export default class DLLsHelper {
+  static Assemblies: Il2Cpp.Assembly[] = Il2Cpp.domain.assemblies;
 
-  handleFunctions(): void {
-    //web, http, network
-    const classFilters = ["http", "network", "web"];
-    const methodFilters = ["post","set","send"];
-    const parameterFilters = ["url", "uri"];
-    this.listenFilteredClasses(classFilters);
-    //this.listenFilteredMethods(classFilters,methodFilters);
-    //this.listenFilteredParameters(classFilters,parameterFilters);
-    return;
-  }
-
-  private listenAllDlls(): void {
+  public static listenAllDlls(): void {
     Il2Cpp.trace(true).assemblies(...Il2Cpp.domain.assemblies).and().attach();
   }
 
   // Do more partical and adjustmen
-  private listenFilteredClasses(filters: string[]): void {
+  public static listenFilteredClasses(filters: string[]): void {
     Il2Cpp.trace(true)
     .assemblies(...this.Assemblies)
     .filterClasses((klass) => this.isItIncludesClass(filters, klass))
@@ -30,9 +16,9 @@ export default class DLLs implements IPlatform {
     .attach();
   }
 
-  private listenFilteredMethods(classFilters:string[],methodFilters: string[]): void {
+  public static listenFilteredMethods(classFilters:string[],methodFilters: string[]): void {
 
-    
+
     Il2Cpp.trace(true)
     .assemblies(...this.Assemblies)
     .filterClasses((klass) => this.isItIncludesClass(classFilters, klass))
@@ -46,7 +32,7 @@ export default class DLLs implements IPlatform {
     .attach();
   }
 
-  private listenFilteredParameters(classFilters: string[],parameterFilters: string[]): void {
+  public static listenFilteredParameters(classFilters: string[],parameterFilters: string[]): void {
     Il2Cpp.trace(true)
     .assemblies(...this.Assemblies)
     .filterClasses((klass) => this.isItIncludesClass(classFilters, klass))
@@ -54,43 +40,53 @@ export default class DLLs implements IPlatform {
     .and()
     .attach();
   }
-  private isItIncludesClass(filters: string[], klass: Il2Cpp.Class): boolean {
+  public static isItIncludesClass(filters: string[], klass: Il2Cpp.Class): boolean {
     if(filters.some(filter => klass.name.toLowerCase().includes(filter))) {
       return true;
     }
     return false;
   }
 
-  private isItIncludesMethod(filters: string[], method: Il2Cpp.Method): boolean {
+  public static isItIncludesMethod(filters: string[], method: Il2Cpp.Method): boolean {
     if(filters.some(filter => method.name.toLowerCase().includes(filter))) {
       return true;
     }
     return false;
   }
 
-  private isItIncludesParameter(filters: string[], parameter: Il2Cpp.Parameter): boolean {
+  private static isItIncludesParameter(filters: string[], parameter: Il2Cpp.Parameter): boolean {
     if(filters.some(filter => parameter.name.toLowerCase().includes(filter))) {
-      
       return true;
     }
     return false;
   }
-  
 
-  public getAssemblies(): Il2Cpp.Assembly[] {
+  public static isItIncludesParameters(filters: string[], parameters: Il2Cpp.Parameter[]): Il2Cpp.Parameter[]{
+    let parameterList : Il2Cpp.Parameter[] = []
+
+    parameters.some(param => filters.some(filter => {
+      if(param.name.toLowerCase().includes(filter)){
+       parameterList.push(param);
+      }
+    }));
+    return parameterList
+  }
+
+  public static getAssemblies(): Il2Cpp.Assembly[] {
     return this.Assemblies;
   }
 
-  public getClasses(): Il2Cpp.Class[] {
+  public static getClasses(): Il2Cpp.Class[] {
     return this.Assemblies.flatMap(assembly => assembly.image.classes);
   }
 
 
-  public getMethods(): Il2Cpp.Method[] {
+  public static getMethods(): Il2Cpp.Method[] {
     return this.Assemblies.flatMap(assembly => assembly.image.classes.flatMap(klass => klass.methods));
   }
   
-  public getMethodsByFiltering(parameterFilter:string, classFilter:string): Il2Cpp.Method[] {
+   public static getMethodsByFiltering(parameterFilter:string, classFilter:string): Il2Cpp.Method[] {
+    
     return this.Assemblies.flatMap(assembly => assembly.image.classes.flatMap(klass => klass.methods));
   }
 }
