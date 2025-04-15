@@ -18,6 +18,11 @@ type CMPData = {
 
 Il2Cpp.perform(() => {
  
+  const unityAnalyticsPlatform = new UnityAnalyticsPlatform();
+
+  unityAnalyticsPlatform.handleFunctions();
+
+  /*
   const classFilter = ["web","http","network","request"]
   const methodFilter = ["post","send", "get"]
   const parameterFilter = ["url","uri"]
@@ -29,9 +34,6 @@ Il2Cpp.perform(() => {
     foundClasses.push(...assembly.image.classes.filter((klass : Il2Cpp.Class) => DLLsHelper.isItIncludesClass(classFilter,klass) ))
   })
 
-
-
-  
 
   // Filters all methods.
   const foundMethods : CMPData[] = []
