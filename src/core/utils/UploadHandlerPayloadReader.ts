@@ -1,27 +1,41 @@
+import Logger from "./Logger";
+
 /**
- * Reads the payload from the upload handler of a UnityWebRequest object.
+ * Reads the payload from the upload handler of a instance of class.
  *
- * @param {Il2Cpp.Object} unityWebRequest - The UnityWebRequest object from which to read the upload handler payload.
- * @returns {String | null} The payload data as a string, or null if the provided object is not a UnityWebRequest.
+ * @param {Il2Cpp.Object} instance - The instance object from which to read the upload handler payload.
+ * @returns {String} The payload data as a string, or empty if error happened.
  */
 export default function UploadHandlerPayloadReader(
-  unityWebRequest: Il2Cpp.Object
-): String | null {
-  if (!unityWebRequest.toString().includes("UnityWebRequest")) {
-    return null;
+  instance: Il2Cpp.Object
+): String {
+  const uploadHandler = (instance as Il2Cpp.Object).tryMethod<Il2Cpp.Object>(
+    "get_uploadHandler"
+  );
+
+  if (uploadHandler && uploadHandler.virtualAddress.toInt32() != 0) {
+    const uploadHandlerRaw = uploadHandler.invoke() as Il2Cpp.Object;
+
+    if (uploadHandlerRaw.handle.toInt32() == 0x0) {
+      return "";
+    }
+
+    const payload = uploadHandlerRaw.tryField("m_Payload");
+
+    if (payload) {
+      const payload_pointer = (payload.value as Il2Cpp.ValueType).box();
+      const itemLength = payload_pointer
+        .method("get_Length")
+        .invoke() as number;
+      const getItemMethod = payload_pointer.method("get_Item");
+      let payloadData: string = "";
+
+      for (let i = 0; i < itemLength; i++) {
+        payloadData += String.fromCharCode(getItemMethod.invoke(i) as number);
+      }
+      return payloadData;
+    }
   }
 
-  const uploadHandlerMethod = unityWebRequest.method("get_uploadHandler"); //
-  const uploadHandlerRaw = uploadHandlerMethod.invoke() as Il2Cpp.Object;
-  const payload = uploadHandlerRaw.field("m_Payload");
-  const payload_pointer = (payload.value as Il2Cpp.ValueType).box();
-
-  const itemLength = payload_pointer.method("get_Length").invoke() as number;
-  const getItemMethod = payload_pointer.method("get_Item");
-
-  let payloadData: string = "";
-  for (let i = 0; i < itemLength; i++) {
-    payloadData += String.fromCharCode(getItemMethod.invoke(i) as number);
-  }
-  return payloadData;
+  return "";
 }

@@ -1,7 +1,7 @@
 [
   { "url": "http://localhost:3000", "status": true },
   {
-    "url": "http://192.168.238.202:3000",
-    "status": false
+    "url": "http://192.168.174.53:3000",
+    "status": true
   }
 ]
