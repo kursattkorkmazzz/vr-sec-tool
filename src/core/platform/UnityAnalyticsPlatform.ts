@@ -17,8 +17,7 @@ export default class UnityAnalyticsPlatform implements IPlatform {
     this.WebRequestHelper = this.UnityAnalyticsInternalAssembly.class(
       "Unity.Services.Analytics.Internal.WebRequestHelper"
     );
-    this.CreateWebRequest = this.WebRequestHelper.method("CreateWebRequest")
-    
+    this.CreateWebRequest = this.WebRequestHelper.method("CreateWebRequest");
   }
 
   handleFunctions(): void {
@@ -28,20 +27,29 @@ export default class UnityAnalyticsPlatform implements IPlatform {
   }
 
   private injection(): void {
-    Logger.logMethodInfo(this.CreateWebRequest);
-   
-    this.CreateWebRequest.implementation = function (this,...params: Il2Cpp.Parameter.Type[]) {
-      const url = Il2Cpp.string("https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistol");
+    this.CreateWebRequest.implementation = function (
+      this,
+      ...params: Il2Cpp.Parameter.Type[]
+    ) {
+      Logger.info("Method handled");
+      const url = Il2Cpp.string(
+        "https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistolweapon"
+      );
       const type = Il2Cpp.string("POST");
       //const payload = Il2Cpp.array<number>( Il2Cpp.corlib.class("System.Byte"), [0x56 ,0x52 ,0x20 ,0x53 ,0x45 ,0x43 ,0x20 ,0x54,0x45 ,0x41,0x4D]);
-      
-      const payloadString = String.fromCharCode(...(params[2] as any ))
-      const payloadObject = JSON.parse(payloadString)
+
+      const payloadString = String.fromCharCode(...(params[2] as any));
+      const payloadObject = JSON.parse(payloadString);
 
       payloadObject["INJECTED_BY"] = "VR_SEC_TEAM";
-      const payload = Il2Cpp.array<number>( Il2Cpp.corlib.class("System.Byte"), JSON.stringify(payloadObject).split("").map((char) => char.charCodeAt(0)));
-
-      return this.method("CreateWebRequest").invoke( url,type,payload);
+      const payload = Il2Cpp.array<number>(
+        Il2Cpp.corlib.class("System.Byte"),
+        JSON.stringify(payloadObject)
+          .split("")
+          .map((char) => char.charCodeAt(0))
+      );
+      Logger.info("Payload: ", JSON.stringify(payloadObject));
+      return this.method("CreateWebRequest").invoke(url, type, payload);
     };
   }
 }

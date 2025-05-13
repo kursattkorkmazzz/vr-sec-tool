@@ -10,18 +10,18 @@ import Logger from "./core/utils/Logger";
 
 /* Class-Method-Parameter Data  */
 type CMPData = {
-  class : Il2Cpp.Class,
-  method: Il2Cpp.Method,
-  parameter: Il2Cpp.Parameter
-  parameter_position: number 
-}
+  class: Il2Cpp.Class;
+  method: Il2Cpp.Method;
+  parameter: Il2Cpp.Parameter;
+  parameter_position: number;
+};
 
 Il2Cpp.perform(() => {
- 
-  const unityAnalyticsPlatform = new UnityAnalyticsPlatform();
+  const unityNetworkingPlatform = new UnityNetworkingPlatform();
+  unityNetworkingPlatform.handleFunctions();
 
-  unityAnalyticsPlatform.handleFunctions();
-
+  const unityAnlyticsPlatform = new UnityAnalyticsPlatform();
+  unityAnlyticsPlatform.handleFunctions();
   /*
   const classFilter = ["web","http","network","request"]
   const methodFilter = ["post","send", "get"]
@@ -70,9 +70,8 @@ Il2Cpp.perform(() => {
   
 })*/
 
-
-// Injecting all founded method.
-/*foundMethods.forEach((method : CMPData)=>{
+  // Injecting all founded method.
+  /*foundMethods.forEach((method : CMPData)=>{
     if((method.method.implementationFlags != 4096) ){
       method.method.implementation = function (...params: Il2Cpp.Parameter.Type[]) {
         params[method.parameter_position] = Il2Cpp.string("https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistol");

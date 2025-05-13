@@ -20,14 +20,37 @@ export default class UnityNetworkingPlatform implements IPlatform {
   }
 
   handleFunctions(): void {
-    // this.postFunctionHandler();
-    // this.getFunctionHandler();
+    // console.log(this.UnityWebRequest.methods.map((m) => m).join("\n\n"));
+    const sendWebRequestMethod =
+      this.UnityWebRequest.tryMethod("SendWebRequest");
+    if (!sendWebRequestMethod) {
+      Logger.error("SendWebRequest method not found in UnityWebRequest.");
+      return;
+    }
 
-    this.set_uriHandler();
-    this.get_urlHandler();
+    sendWebRequestMethod.implementation = function (
+      this,
+      ...parameters: Il2Cpp.Parameter.Type[]
+    ) {
+      //Logger.info("SendWebRequest method called with parameters: ", parameters);
+      // Logger.warn((this as Il2Cpp.Object).class.fields.join("\n\n"));
+      /*
+      Logger.warn("Class: ", this.toString());
+      Logger.warn((this as Il2Cpp.Object).class.fields.join("\n\n"));
+      Logger.info((this as Il2Cpp.Object).class.methods.join("\n\n"));
+      const requestMethodType = this.method("get_method").invoke();
+      Logger.error("requestMethodType: ", requestMethodType);
+*/
 
-    Il2Cpp.trace(true).classes(this.UnityWebRequest).and().attach();
-    return;
+      const getUploadHandlerMethod = this.method("get_uploadHandler");
+      if (getUploadHandlerMethod) {
+        Logger.info("get_uploadHandler method founded and called.");
+        const uploadHandler = getUploadHandlerMethod.invoke();
+        Logger.info("UploadHandler: ", uploadHandler);
+      }
+
+      return this.method("SendWebRequest").invoke(...parameters);
+    };
   }
 
   /**
@@ -86,7 +109,6 @@ export default class UnityNetworkingPlatform implements IPlatform {
       return GetMethod.invoke(url);
     };
   }
-
   private set_urlHandler() {
     const setUrlMethod = this.UnityWebRequest.method<void>("set_url");
     setUrlMethod.implementation = function (
@@ -99,7 +121,6 @@ export default class UnityNetworkingPlatform implements IPlatform {
       //return this.method<void>("set_url").invoke(string);
     };
   }
-
   private set_uriHandler() {
     const setUriMethod = this.UnityWebRequest.method<void>("set_uri");
     setUriMethod.implementation = function (
