@@ -1,6 +1,6 @@
 import IPlatform from "../interfaces/IPlatform";
 
-export default class GameMechanics implements IPlatform {
+export default class GurkanınGozBebegi implements IPlatform {
   GameAssembly: Il2Cpp.Image;
   GameClass: Il2Cpp.Class;
   constructor() {
