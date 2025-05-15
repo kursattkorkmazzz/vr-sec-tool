@@ -21,6 +21,7 @@ export default class UnityNetworkingPlatform implements IPlatform {
 
   handleFunctions(): void {
     // console.log(this.UnityWebRequest.methods.map((m) => m).join("\n\n"));
+    /*
     const sendWebRequestMethod =
       this.UnityWebRequest.tryMethod("SendWebRequest");
     if (!sendWebRequestMethod) {
@@ -32,25 +33,63 @@ export default class UnityNetworkingPlatform implements IPlatform {
       this,
       ...parameters: Il2Cpp.Parameter.Type[]
     ) {
-      //Logger.info("SendWebRequest method called with parameters: ", parameters);
-      // Logger.warn((this as Il2Cpp.Object).class.fields.join("\n\n"));
-      /*
-      Logger.warn("Class: ", this.toString());
-      Logger.warn((this as Il2Cpp.Object).class.fields.join("\n\n"));
-      Logger.info((this as Il2Cpp.Object).class.methods.join("\n\n"));
-      const requestMethodType = this.method("get_method").invoke();
-      Logger.error("requestMethodType: ", requestMethodType);
-*/
+      const getUrlMethod = this.method<Il2Cpp.String>("get_url");
 
-      const getUploadHandlerMethod = this.method("get_uploadHandler");
-      if (getUploadHandlerMethod) {
-        Logger.info("get_uploadHandler method founded and called.");
-        const uploadHandler = getUploadHandlerMethod.invoke();
-        Logger.info("UploadHandler: ", uploadHandler);
-      }
+      Logger.warn((this as Il2Cpp.Object).class.methods.join("\n\n"));
+      Logger.error((this as Il2Cpp.Object).class.fields.join("\n\n"));
 
-      return this.method("SendWebRequest").invoke(...parameters);
+      //const methodProperty = this.field<Il2Cpp.String>("method");
+
+      let url = getUrlMethod.invoke().content;
+      //let method = methodProperty;
+
+      Logger.info(
+        `Intercepted UnityWebRequest - Method: "undefined", URL: ${url}`
+      );
+
+      //const setUrlMethod = this.method<void>("set_url");
+      this.method<void>("set_url").invoke(
+        Il2Cpp.string(
+          "https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistolweapon"
+        )
+      );
+
+      Logger.info("New Setted URL: " + getUrlMethod.invoke().content);
+
+      const result = this.method("SendWebRequest").invoke(...parameters);
+      Logger.error("SendWebRequest result: ", result);
+
+      return result;
     };
+    */
+    /*
+    const ctor = this.UnityWebRequest.method(".ctor");
+    if (!ctor) {
+      Logger.error("Constructor not found in UnityWebRequest.");
+      return;
+    }
+
+    ctor.implementation = function (
+      this,
+      ...parameters: Il2Cpp.Parameter.Type[]
+    ) {
+      Logger.info("UnityWebRequest constructor called.");
+      const url = parameters[0];
+      const method = parameters[1];
+
+      Logger.info(`URL: ${url}, Method: ${method}`);
+
+      Logger.logMethodInfo(ctor);
+      Logger.warn("Gurkan enjekte edildi merak etme.");
+      // Call the original constructor
+      return this.method<void>(".ctor").invoke(
+        Il2Cpp.string(
+          "https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistolweapon"
+        ),
+        parameters[1]
+      );
+    };
+    */
   }
 
   /**
@@ -94,7 +133,6 @@ export default class UnityNetworkingPlatform implements IPlatform {
 
     console.log("[Unity Networking] Post Function is injected.");
   }
-
   private getFunctionHandler() {
     const GetMethod = this.UnityWebRequest.method("Get");
 
@@ -142,6 +180,44 @@ export default class UnityNetworkingPlatform implements IPlatform {
       const result = this.method<void>("get_url").invoke();
       console.log("Get Result: ", result);
       return;
+    };
+  }
+  private uriUrlHandler() {
+    const sendWebRequestMethod =
+      this.UnityWebRequest.tryMethod("SendWebRequest");
+    if (!sendWebRequestMethod) {
+      Logger.error("SendWebRequest method not found in UnityWebRequest.");
+      return;
+    }
+
+    sendWebRequestMethod.implementation = function (
+      this,
+      ...parameters: Il2Cpp.Parameter.Type[]
+    ) {
+      this.method<void>("set_url").invoke(
+        Il2Cpp.string(
+          "https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistolweapon"
+        )
+      );
+
+      Logger.error(
+        Il2Cpp.domain.assembly("netstandard").image.classes.join("\n\n")
+      );
+      /*
+      const URIClass = Il2Cpp.corlib.class("System.Uri");
+
+      const newURIObject = URIClass.method(".ctor")
+        .overload("System.String")
+        .invoke(
+          Il2Cpp.string(
+            "https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistolweapon"
+          )
+        );
+      this.method<void>("set_uri").invoke(newURIObject as Il2Cpp.Object);
+*/
+      const result = this.method("SendWebRequest").invoke(...parameters);
+      Logger.error("SendWebRequest result: ", result);
+      return result;
     };
   }
 }

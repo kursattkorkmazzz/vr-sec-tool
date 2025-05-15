@@ -7,7 +7,8 @@ import GameMechanics from "./core/platform/GameMechanics";
 import SystemNetwork from "./core/platform/SystemNetworkingPlatform";
 import DLLsHelper from "./core/utils/DLLsHelper";
 import Logger from "./core/utils/Logger";
-
+import UnityWebRequestPlatform from "./core/platform/UnityWebRequest";
+import SystemNetSocketPlatform from "./core/platform/SystemNetSocketPlatform";
 /* Class-Method-Parameter Data  */
 type CMPData = {
   class: Il2Cpp.Class;
@@ -17,11 +18,20 @@ type CMPData = {
 };
 
 Il2Cpp.perform(() => {
-  const unityNetworkingPlatform = new UnityNetworkingPlatform();
-  unityNetworkingPlatform.handleFunctions();
+  const unityWebRequestPlatform = new UnityWebRequestPlatform();
+  unityWebRequestPlatform.handleFunctions();
 
-  const unityAnlyticsPlatform = new UnityAnalyticsPlatform();
-  unityAnlyticsPlatform.handleFunctions();
+  //const gameMechanics = new GameMechanics();
+  //gameMechanics.handleFunctions();
+
+  //const unityNetworkingPlatform = new UnityNetworkingPlatform();
+  //unityNetworkingPlatform.handleFunctions();
+
+  //const systemNetSocketPlatform = new SystemNetSocketPlatform();
+  //systemNetSocketPlatform.handleFunctions();
+
+  //const unityAnlyticsPlatform = new UnityAnalyticsPlatform();
+  //unityAnlyticsPlatform.handleFunctions();
   /*
   const classFilter = ["web","http","network","request"]
   const methodFilter = ["post","send", "get"]
