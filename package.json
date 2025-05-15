@@ -4,7 +4,8 @@
   "scripts": {
     "build": "esbuild ./src/main.ts --bundle  --platform=node --outfile=./dist/main-esbuild.js",
     "watch": "esbuild ./src/main.ts --bundle --platform=node --outfile=./dist/main-esbuild.js --watch --allow-overwrite",
-    "frida": "frida -U -f re.frida.Gadget -l ./dist/main-esbuild.js"
+    "frida": "frida -U -f re.frida.Gadget -l ./dist/main-esbuild.js",
+    "frida-log": "frida -U -f re.frida.Gadget -l ./dist/main-esbuild.js 2>&1 | tee ./logs/log.txt"
   },
   "author": "",
   "license": "ISC",

@@ -21,7 +21,11 @@ export default class UnityAnalyticsPlatform implements IPlatform {
   }
 
   handleFunctions(): void {
+    const start = Date.now();
     this.injection();
+    const end = Date.now();
+    const duration = end - start;
+    console.log(`time took to inject :) ${duration} ms`);
     //Il2Cpp.trace(true).methods(this.CreateWebRequest).and().attach();
     return;
   }
