@@ -10,12 +10,4 @@
    . . . .
    . . . .   Connected to Quest 2 (id=1WMHHA4CHY2136)
 Spawning `re.frida.Gadget`...
-Spawned `re.frida.Gadget`. Resuming main thread!
-[Quest 2::re.frida.Gadget ]-> Connection terminated
-
-Thank you for using Frida!
-Fatal Python error: _enter_buffered_busy: could not acquire lock for <_io.BufferedReader name='<stdin>'> at interpreter shutdown, possibly due to daemon threads
-Python runtime state: finalizing (tstate=0x00000001028204a0)
-
-Current thread 0x0000000205198c00 (most recent call first):
-  <no Python frame>
+Failed to spawn: need Gadget to attach on jailed Android; its default location is: /Users/kursat/.cache/frida/gadget-android-arm64.so
