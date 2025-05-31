@@ -1,0 +1,88 @@
+     ____
+    / _  |   Frida 16.5.2 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   More info at https://frida.re/docs/home/
+   . . . .
+   . . . .   Connected to Quest 2 (id=1WMHHA4CHY2136)
+Spawning `re.frida.Gadget`...
+Spawned `re.frida.Gadget`. Resuming main thread!
+[Quest 2::re.frida.Gadget ]-> il2cpp: couldn't find assembly UnityEngine.UnityWebRequestAssetBundleModule.dll
+    at assembly (/Users/kursat/Kursat-Dev/bitirme-projects/vr-sec-tool/dist/main-esbuild.js:1890)
+    at ListenAllWebRequestDll (/Users/kursat/Kursat-Dev/bitirme-projects/vr-sec-tool/dist/main-esbuild.js:3307)
+    at <anonymous> (/Users/kursat/Kursat-Dev/bitirme-projects/vr-sec-tool/dist/main-esbuild.js:3296)
+    at perform (/Users/kursat/Kursat-Dev/bitirme-projects/vr-sec-tool/dist/main-esbuild.js:1074)
+il2cpp: 
+0x02e7e694 ┌─Unity.Services.Analytics.AnalyticsContainer::OnApplicationPause(this = AnalyticsContainer (Unity.Services.Analytics.AnalyticsContainer), paused = false)
+0x02e7d968 │ ┌─Unity.Services.Analytics.AnalyticsServiceInstance::ApplicationPaused(this = Unity.Services.Analytics.AnalyticsServiceInstance, paused = false)
+0x02e7e414 │ │ ┌─Unity.Services.Analytics.AnalyticsServiceSystemCalls::get_UtcNow(this = Unity.Services.Analytics.AnalyticsServiceSystemCalls)
+0x02e7e414 │ │ └─Unity.Services.Analytics.AnalyticsServiceSystemCalls::get_UtcNow = 15.05.2025 12:07:13
+0x02e7d968 │ └─Unity.Services.Analytics.AnalyticsServiceInstance::ApplicationPaused
+0x02e7e694 └─Unity.Services.Analytics.AnalyticsContainer::OnApplicationPause
+
+il2cpp: 
+0x02e7e610 ┌─Unity.Services.Analytics.AnalyticsContainer::Update(this = AnalyticsContainer (Unity.Services.Analytics.AnalyticsContainer))
+0x02e7dce8 │ ┌─Unity.Services.Analytics.AnalyticsServiceInstance::RecordGameRunningIfNecessary(this = Unity.Services.Analytics.AnalyticsServiceInstance)
+0x02e81074 │ │ ┌─Unity.Services.Analytics.Internal.BufferX::get_Length(this = Unity.Services.Analytics.Internal.BufferX)
+0x02e81074 │ │ └─Unity.Services.Analytics.Internal.BufferX::get_Length = 14
+0x02e81074 │ │ ┌─Unity.Services.Analytics.Internal.BufferX::get_Length(this = Unity.Services.Analytics.Internal.BufferX)
+0x02e81074 │ │ └─Unity.Services.Analytics.Internal.BufferX::get_Length = 14
+0x02e81074 │ │ ┌─Unity.Services.Analytics.Internal.BufferX::get_Length(this = Unity.Services.Analytics.Internal.BufferX)
+0x02e81074 │ │ └─Unity.Services.Analytics.Internal.BufferX::get_Length = 14
+0x02e7dce8 │ └─Unity.Services.Analytics.AnalyticsServiceInstance::RecordGameRunningIfNecessary
+0x02e7e504 │ ┌─Unity.Services.Analytics.AnalyticsContainer::get_AutoFlushPeriod(this = AnalyticsContainer (Unity.Services.Analytics.AnalyticsContainer))
+0x02e7da8c │ │ ┌─Unity.Services.Analytics.AnalyticsServiceInstance::get_AutoflushPeriodMultiplier(this = Unity.Services.Analytics.AnalyticsServiceInstance)
+0x02e83dac │ │ │ ┌─Unity.Services.Analytics.Internal.Dispatcher::get_ConsecutiveFailedUploadCount(this = Unity.Services.Analytics.Internal.Dispatcher)
+0x02e83dac │ │ │ └─Unity.Services.Analytics.Internal.Dispatcher::get_ConsecutiveFailedUploadCount = 0
+0x02e7da8c │ │ └─Unity.Services.Analytics.AnalyticsServiceInstance::get_AutoflushPeriodMultiplier = 1
+0x02e7e504 │ └─Unity.Services.Analytics.AnalyticsContainer::get_AutoFlushPeriod = 60
+0x02e7cf44 │ ┌─Unity.Services.Analytics.AnalyticsServiceInstance::Flush(this = Unity.Services.Analytics.AnalyticsServiceInstance)
+0x02e83dd8 │ │ ┌─Unity.Services.Analytics.Internal.Dispatcher::Flush(this = Unity.Services.Analytics.Internal.Dispatcher)
+0x02e83e5c │ │ │ ┌─Unity.Services.Analytics.Internal.Dispatcher::FlushBufferToService(this = Unity.Services.Analytics.Internal.Dispatcher)
+0x02e821e8 │ │ │ │ ┌─Unity.Services.Analytics.Internal.BufferX::Serialize(this = Unity.Services.Analytics.Internal.BufferX)
+0x02e821e8 │ │ │ │ └─Unity.Services.Analytics.Internal.BufferX::Serialize = null
+0x02e81074 │ │ │ │ ┌─Unity.Services.Analytics.Internal.BufferX::get_Length(this = Unity.Services.Analytics.Internal.BufferX)
+0x02e81074 │ │ │ │ └─Unity.Services.Analytics.Internal.BufferX::get_Length = 14
+0x02e83e5c │ │ │ └─Unity.Services.Analytics.Internal.Dispatcher::FlushBufferToService
+0x02e83dd8 │ │ └─Unity.Services.Analytics.Internal.Dispatcher::Flush
+0x02e7cf44 │ └─Unity.Services.Analytics.AnalyticsServiceInstance::Flush
+0x02e7e610 └─Unity.Services.Analytics.AnalyticsContainer::Update
+
+il2cpp: 
+0x02e7e610 ┌─Unity.Services.Analytics.AnalyticsContainer::Update(this = AnalyticsContainer (Unity.Services.Analytics.AnalyticsContainer))
+0x02e7e504 │ ┌─Unity.Services.Analytics.AnalyticsContainer::get_AutoFlushPeriod(this = AnalyticsContainer (Unity.Services.Analytics.AnalyticsContainer))
+0x02e7da8c │ │ ┌─Unity.Services.Analytics.AnalyticsServiceInstance::get_AutoflushPeriodMultiplier(this = Unity.Services.Analytics.AnalyticsServiceInstance)
+0x02e83dac │ │ │ ┌─Unity.Services.Analytics.Internal.Dispatcher::get_ConsecutiveFailedUploadCount(this = Unity.Services.Analytics.Internal.Dispatcher)
+0x02e83dac │ │ │ └─Unity.Services.Analytics.Internal.Dispatcher::get_ConsecutiveFailedUploadCount = 0
+0x02e7da8c │ │ └─Unity.Services.Analytics.AnalyticsServiceInstance::get_AutoflushPeriodMultiplier = 1
+0x02e7e504 │ └─Unity.Services.Analytics.AnalyticsContainer::get_AutoFlushPeriod = 60
+0x02e7e610 └─Unity.Services.Analytics.AnalyticsContainer::Update
+
+il2cpp: 
+0x02e7a4ac ┌─Unity.Services.Analytics.AnalyticsService::get_Instance()
+0x02e7a4ac └─Unity.Services.Analytics.AnalyticsService::get_Instance = Unity.Services.Analytics.AnalyticsServiceInstance
+
+il2cpp: 
+0x02e7c818 ┌─Unity.Services.Analytics.AnalyticsServiceInstance::StartDataCollection(this = Unity.Services.Analytics.AnalyticsServiceInstance)
+0x02e7c818 └─Unity.Services.Analytics.AnalyticsServiceInstance::StartDataCollection
+
+il2cpp: 
+0x02e7e694 ┌─Unity.Services.Analytics.AnalyticsContainer::OnApplicationPause(this = AnalyticsContainer (Unity.Services.Analytics.AnalyticsContainer), paused = true)
+0x02e7d968 │ ┌─Unity.Services.Analytics.AnalyticsServiceInstance::ApplicationPaused(this = Unity.Services.Analytics.AnalyticsServiceInstance, paused = true)
+0x02e7e414 │ │ ┌─Unity.Services.Analytics.AnalyticsServiceSystemCalls::get_UtcNow(this = Unity.Services.Analytics.AnalyticsServiceSystemCalls)
+0x02e7e414 │ │ └─Unity.Services.Analytics.AnalyticsServiceSystemCalls::get_UtcNow = 15.05.2025 12:07:47
+0x02e7d968 │ └─Unity.Services.Analytics.AnalyticsServiceInstance::ApplicationPaused
+0x02e7e694 └─Unity.Services.Analytics.AnalyticsContainer::OnApplicationPause
+
+Connection terminated
+
+Thank you for using Frida!
+Fatal Python error: _enter_buffered_busy: could not acquire lock for <_io.BufferedReader name='<stdin>'> at interpreter shutdown, possibly due to daemon threads
+Python runtime state: finalizing (tstate=0x000000010615c4a0)
+
+Current thread 0x0000000205198c00 (most recent call first):
+  <no Python frame>

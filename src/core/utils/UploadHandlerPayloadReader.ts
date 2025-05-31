@@ -12,7 +12,6 @@ export default function UploadHandlerPayloadReader(
   const uploadHandler = (instance as Il2Cpp.Object).tryMethod<Il2Cpp.Object>(
     "get_uploadHandler"
   );
-
   if (uploadHandler && uploadHandler.virtualAddress.toInt32() != 0) {
     const uploadHandlerRaw = uploadHandler.invoke() as Il2Cpp.Object;
 
@@ -21,7 +20,6 @@ export default function UploadHandlerPayloadReader(
     }
 
     const payload = uploadHandlerRaw.tryField("m_Payload");
-
     if (payload) {
       const payload_pointer = (payload.value as Il2Cpp.ValueType).box();
       const itemLength = payload_pointer
