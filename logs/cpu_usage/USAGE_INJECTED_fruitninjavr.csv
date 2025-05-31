@@ -1,0 +1,17 @@
+Timestamp,DeviceID,PackageName,CPU_Usage (%),Memory_Usage_PSS (KB)
+2025-05-31 16:15:16,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,78.5,1464420
+2025-05-31 16:15:17,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,82.1,1468691
+2025-05-31 16:15:17,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,81.4,1468699
+2025-05-31 16:15:18,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,82.1,1468699
+2025-05-31 16:15:19,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,81.4,1468699
+2025-05-31 16:15:19,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,78.5,1468706
+2025-05-31 16:15:20,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,88.8,1468714
+2025-05-31 16:15:20,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,78.5,1468707
+2025-05-31 16:15:21,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,82.1,1468717
+2025-05-31 16:15:22,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,78.5,1468710
+2025-05-31 16:15:22,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,78.5,1468662
+2025-05-31 16:15:23,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,78.5,1468675
+2025-05-31 16:15:23,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,77.7,1468670
+2025-05-31 16:15:24,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,77.7,1468677
+2025-05-31 16:15:25,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,77.7,1468679
+2025-05-31 16:15:25,1WMHHA4CHY2136,com.halfbrick.fruitninjavr,78.5,1468686

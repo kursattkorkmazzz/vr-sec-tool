@@ -2,7 +2,11 @@
 
 # --- Configuration ---
 LOG_INTERVAL=2 # Seconds between logs (default, can be overridden by user)
-OUTPUT_FILE="app_usage_log.csv"
+OUTPUT_FILE="USAGE_INJECTED_fruitninjavr.csv"
+APP_PACKAGE="com.halfbrick.fruitninjavr" # Package name of the app to monitor
+SELECTED_DEVICE="1WMHHA4CHY2136" # Device ID to monitor, will be set after device selection,
+LOG_INTERVAL=0 # Total duration for logging in seconds, 0 for continuous logging
+LOG_DURATION_SECONDS=10 # Default logging duration in seconds, can be overridden by user input
 # MAX_LOGS=0 # 0 for infinite logging based on entries, otherwise set a number. Now duration is primary.
 
 # --- Helper Functions ---
@@ -19,42 +23,11 @@ if [ -z "$DEVICES" ]; then
   exit 1
 fi
 
-SELECTED_DEVICE=""
-DEVICE_COUNT=$(echo "$DEVICES" | wc -l)
-
-if [ "$DEVICE_COUNT" -gt 1 ]; then
-  echo "📱 Multiple devices found. Please select one:"
-  select DEVICE_ID in $DEVICES; do
-    if [ -n "$DEVICE_ID" ]; then
-      SELECTED_DEVICE=$DEVICE_ID
-      break
-    else
-      echo "Invalid selection. Please try again."
-    fi
-  done
-else
-  SELECTED_DEVICE=$DEVICES
-  echo "🔌 Using device: $SELECTED_DEVICE"
-fi
-
-echo ""
-read -r -p "Enter the package name of the application to monitor (e.g., com.example.app): " APP_PACKAGE
 
 if [ -z "$APP_PACKAGE" ]; then
   echo "❌ Application package name cannot be empty."
   exit 1
 fi
-
-echo ""
-read -r -p "Enter the logging interval in seconds (e.g., 2, default is $LOG_INTERVAL): " USER_LOG_INTERVAL
-if [[ "$USER_LOG_INTERVAL" =~ ^[0-9]+([.][0-9]+)?$ ]] && [ "$(echo "$USER_LOG_INTERVAL > 0" | bc -l)" -eq 1 ]; then
-  LOG_INTERVAL=$USER_LOG_INTERVAL
-else
-  echo "⚠️ Invalid interval. Using default: $LOG_INTERVAL seconds."
-fi
-
-echo ""
-read -r -p "Enter the total duration for logging in seconds (e.g., 60 for 1 minute, 0 for continuous): " LOG_DURATION_SECONDS
 
 # Validate LOG_DURATION_SECONDS
 if ! [[ "$LOG_DURATION_SECONDS" =~ ^[0-9]+$ ]]; then
