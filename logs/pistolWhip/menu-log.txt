@@ -1,0 +1,225 @@
+     ____
+    / _  |   Frida 16.5.2 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   More info at https://frida.re/docs/home/
+   . . . .
+   . . . .   Connected to Quest 2 (id=1WMHHA4CHY2136)
+Spawning `re.frida.Gadget`...
+Spawned `re.frida.Gadget`. Resuming main thread!
+[Quest 2::re.frida.Gadget ]-> il2cpp: 
+0x02d728dc ┌─UnityEngine.Networking.UnityWebRequest::.ctor(this = UnityEngine.Networking.UnityWebRequest, url = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/catalog.bin")
+0x02d72940 │ ┌─UnityEngine.Networking.UnityWebRequest::set_url(this = UnityEngine.Networking.UnityWebRequest, value = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/catalog.bin")
+0x02d6ffec │ │ ┌─UnityEngineInternal.WebRequestUtils::.cctor()
+0x02d6ffec │ │ └─UnityEngineInternal.WebRequestUtils::.cctor
+0x02d6f758 │ │ ┌─UnityEngineInternal.WebRequestUtils::MakeInitialUrl(targetUrl = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/catalog.bin", localUrl = "http://localhost/")
+0x02d6faf0 │ │ │ ┌─UnityEngineInternal.WebRequestUtils::MakeUriString(targetUri = jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/catalog.bin, targetUrl = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/catalog.bin", prependProtocol = false)
+0x02d6faf0 │ │ │ └─UnityEngineInternal.WebRequestUtils::MakeUriString = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/catalog.bin"
+0x02d6f758 │ │ └─UnityEngineInternal.WebRequestUtils::MakeInitialUrl = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/catalog.bin"
+0x02d73a08 │ │ ┌─UnityEngine.Networking.UnityWebRequest::InternalSetUrl(this = UnityEngine.Networking.UnityWebRequest, url = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/catalog.bin")
+0x02d73a08 │ │ └─UnityEngine.Networking.UnityWebRequest::InternalSetUrl
+0x02d72940 │ └─UnityEngine.Networking.UnityWebRequest::set_url
+0x02d728dc └─UnityEngine.Networking.UnityWebRequest::.ctor
+
+il2cpp: 
+0x02d73280 ┌─UnityEngine.Networking.UnityWebRequest::SendWebRequest(this = UnityEngine.Networking.UnityWebRequest)
+0x02d73280 └─UnityEngine.Networking.UnityWebRequest::SendWebRequest = UnityEngine.Networking.UnityWebRequestAsyncOperation
+
+il2cpp: 
+0x02d73c74 ┌─UnityEngine.Networking.UnityWebRequest::get_isDone(this = UnityEngine.Networking.UnityWebRequest)
+0x02d73c74 └─UnityEngine.Networking.UnityWebRequest::get_isDone = true
+
+il2cpp: 
+0x02d73918 ┌─UnityEngine.Networking.UnityWebRequest::get_result(this = UnityEngine.Networking.UnityWebRequest)
+0x02d73918 └─UnityEngine.Networking.UnityWebRequest::get_result = ProtocolError
+
+il2cpp: 
+0x02d744d4 ┌─UnityEngine.Networking.UnityWebRequest::Get(uri = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json")
+0x02d7457c │ ┌─UnityEngine.Networking.DownloadHandlerBuffer::.ctor(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d7457c │ └─UnityEngine.Networking.DownloadHandlerBuffer::.ctor
+0x02d72bc8 │ ┌─UnityEngine.Networking.UnityWebRequest::.ctor(this = UnityEngine.Networking.UnityWebRequest, url = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json", method = "GET", downloadHandler = UnityEngine.Networking.DownloadHandlerBuffer, uploadHandler = null)
+0x02d72940 │ │ ┌─UnityEngine.Networking.UnityWebRequest::set_url(this = UnityEngine.Networking.UnityWebRequest, value = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json")
+0x02d6f758 │ │ │ ┌─UnityEngineInternal.WebRequestUtils::MakeInitialUrl(targetUrl = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json", localUrl = "http://localhost/")
+0x02d6faf0 │ │ │ │ ┌─UnityEngineInternal.WebRequestUtils::MakeUriString(targetUri = jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json, targetUrl = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json", prependProtocol = false)
+0x02d6faf0 │ │ │ │ └─UnityEngineInternal.WebRequestUtils::MakeUriString = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json"
+0x02d6f758 │ │ │ └─UnityEngineInternal.WebRequestUtils::MakeInitialUrl = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json"
+0x02d73a08 │ │ │ ┌─UnityEngine.Networking.UnityWebRequest::InternalSetUrl(this = UnityEngine.Networking.UnityWebRequest, url = "jar:file:///storage/emulated/0/Android/obb/com.cloudheadgames.pistolwhip/main.2104.com.cloudheadgames.pistolwhip.obb!/assets/UnityServicesProjectConfiguration.json")
+0x02d73a08 │ │ │ └─UnityEngine.Networking.UnityWebRequest::InternalSetUrl
+0x02d72940 │ │ └─UnityEngine.Networking.UnityWebRequest::set_url
+0x02d72a44 │ │ ┌─UnityEngine.Networking.UnityWebRequest::set_method(this = UnityEngine.Networking.UnityWebRequest, value = "GET")
+0x02d73320 │ │ │ ┌─UnityEngine.Networking.UnityWebRequest::InternalSetMethod(this = UnityEngine.Networking.UnityWebRequest, methodType = Get)
+0x02d73320 │ │ │ └─UnityEngine.Networking.UnityWebRequest::InternalSetMethod
+0x02d72a44 │ │ └─UnityEngine.Networking.UnityWebRequest::set_method
+0x02d72c6c │ │ ┌─UnityEngine.Networking.UnityWebRequest::set_downloadHandler(this = UnityEngine.Networking.UnityWebRequest, value = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d72c6c │ │ └─UnityEngine.Networking.UnityWebRequest::set_downloadHandler
+0x02d72d84 │ │ ┌─UnityEngine.Networking.UnityWebRequest::set_uploadHandler(this = UnityEngine.Networking.UnityWebRequest, value = null)
+0x02d72d84 │ │ └─UnityEngine.Networking.UnityWebRequest::set_uploadHandler
+0x02d72bc8 │ └─UnityEngine.Networking.UnityWebRequest::.ctor
+0x02d744d4 └─UnityEngine.Networking.UnityWebRequest::Get = UnityEngine.Networking.UnityWebRequest
+
+il2cpp: 
+0x02d73918 ┌─UnityEngine.Networking.UnityWebRequest::get_result(this = UnityEngine.Networking.UnityWebRequest)
+0x02d73918 └─UnityEngine.Networking.UnityWebRequest::get_result = Success
+
+il2cpp: 
+0x02d73198 ┌─UnityEngine.Networking.UnityWebRequest::get_downloadHandler(this = UnityEngine.Networking.UnityWebRequest)
+0x02d73198 └─UnityEngine.Networking.UnityWebRequest::get_downloadHandler = UnityEngine.Networking.DownloadHandlerBuffer
+
+il2cpp: 
+0x02d74d90 ┌─UnityEngine.Networking.DownloadHandler::get_text(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d74e50 │ ┌─UnityEngine.Networking.DownloadHandler::GetText(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d75430 │ │ ┌─UnityEngine.Networking.DownloadHandlerBuffer::GetNativeData(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d75238 │ │ │ ┌─UnityEngine.Networking.DownloadHandler::InternalGetNativeArray(dh = UnityEngine.Networking.DownloadHandlerBuffer, nativeArray = ->Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]])
+0x02d75348 │ │ │ │ ┌─UnityEngine.Networking.DownloadHandler::CreateNativeArrayForNativeData(data = ->Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], bytes = 0x72a284b4e0, length = 174)
+0x02d75348 │ │ │ │ └─UnityEngine.Networking.DownloadHandler::CreateNativeArrayForNativeData
+0x02d75238 │ │ │ └─UnityEngine.Networking.DownloadHandler::InternalGetNativeArray = Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+0x02d75430 │ │ └─UnityEngine.Networking.DownloadHandlerBuffer::GetNativeData = Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+0x02d74f38 │ │ ┌─UnityEngine.Networking.DownloadHandler::GetTextEncoder(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d74f38 │ │ └─UnityEngine.Networking.DownloadHandler::GetTextEncoder = System.Text.UTF8Encoding
+0x02d74e50 │ └─UnityEngine.Networking.DownloadHandler::GetText = "{"Keys":["com.unity.services.analytics.version","com.unity.services.core.version"],"Values":[{"m_Value":"4.1.0","m_IsReadOnly":true},{"m_Value":"1.4.2","m_IsReadOnly":true}]}"
+0x02d74d90 └─UnityEngine.Networking.DownloadHandler::get_text = "{"Keys":["com.unity.services.analytics.version","com.unity.services.core.version"],"Values":[{"m_Value":"4.1.0","m_IsReadOnly":true},{"m_Value":"1.4.2","m_IsReadOnly":true}]}"
+
+il2cpp: 
+0x02d729c8 ┌─UnityEngine.Networking.UnityWebRequest::.ctor(this = UnityEngine.Networking.UnityWebRequest, url = "https://pls.prd.mz.internal.unity3d.com/api/v1/user-lookup", method = "GET")
+0x02d72940 │ ┌─UnityEngine.Networking.UnityWebRequest::set_url(this = UnityEngine.Networking.UnityWebRequest, value = "https://pls.prd.mz.internal.unity3d.com/api/v1/user-lookup")
+0x02d6f758 │ │ ┌─UnityEngineInternal.WebRequestUtils::MakeInitialUrl(targetUrl = "https://pls.prd.mz.internal.unity3d.com/api/v1/user-lookup", localUrl = "http://localhost/")
+0x02d6faf0 │ │ │ ┌─UnityEngineInternal.WebRequestUtils::MakeUriString(targetUri = https://pls.prd.mz.internal.unity3d.com/api/v1/user-lookup, targetUrl = "https://pls.prd.mz.internal.unity3d.com/api/v1/user-lookup", prependProtocol = false)
+0x02d6faf0 │ │ │ └─UnityEngineInternal.WebRequestUtils::MakeUriString = "https://pls.prd.mz.internal.unity3d.com/api/v1/user-lookup"
+0x02d6f758 │ │ └─UnityEngineInternal.WebRequestUtils::MakeInitialUrl = "https://pls.prd.mz.internal.unity3d.com/api/v1/user-lookup"
+0x02d73a08 │ │ ┌─UnityEngine.Networking.UnityWebRequest::InternalSetUrl(this = UnityEngine.Networking.UnityWebRequest, url = "https://pls.prd.mz.internal.unity3d.com/api/v1/user-lookup")
+0x02d73a08 │ │ └─UnityEngine.Networking.UnityWebRequest::InternalSetUrl
+0x02d72940 │ └─UnityEngine.Networking.UnityWebRequest::set_url
+0x02d72a44 │ ┌─UnityEngine.Networking.UnityWebRequest::set_method(this = UnityEngine.Networking.UnityWebRequest, value = "GET")
+0x02d73320 │ │ ┌─UnityEngine.Networking.UnityWebRequest::InternalSetMethod(this = UnityEngine.Networking.UnityWebRequest, methodType = Get)
+0x02d73320 │ │ └─UnityEngine.Networking.UnityWebRequest::InternalSetMethod
+0x02d72a44 │ └─UnityEngine.Networking.UnityWebRequest::set_method
+0x02d729c8 └─UnityEngine.Networking.UnityWebRequest::.ctor
+
+il2cpp: 
+0x02d74378 ┌─UnityEngine.Networking.UnityWebRequest::set_timeout(this = UnityEngine.Networking.UnityWebRequest, value = 10)
+0x02d74378 └─UnityEngine.Networking.UnityWebRequest::set_timeout
+
+il2cpp: 
+0x02d7457c ┌─UnityEngine.Networking.DownloadHandlerBuffer::.ctor(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d7457c └─UnityEngine.Networking.DownloadHandlerBuffer::.ctor
+
+il2cpp: 
+0x02d72c6c ┌─UnityEngine.Networking.UnityWebRequest::set_downloadHandler(this = UnityEngine.Networking.UnityWebRequest, value = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d72c6c └─UnityEngine.Networking.UnityWebRequest::set_downloadHandler
+
+il2cpp: 
+0x02d73130 ┌─UnityEngine.Networking.UnityWebRequest::Dispose(this = UnityEngine.Networking.UnityWebRequest)
+0x02d730d0 │ ┌─UnityEngine.Networking.UnityWebRequest::DisposeHandlers(this = UnityEngine.Networking.UnityWebRequest)
+0x02d75438 │ │ ┌─UnityEngine.Networking.DownloadHandlerBuffer::Dispose(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d752f4 │ │ │ ┌─UnityEngine.Networking.DownloadHandler::DisposeNativeArray(data = ->Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]])
+0x02d752f4 │ │ │ └─UnityEngine.Networking.DownloadHandler::DisposeNativeArray
+0x02d74c00 │ │ │ ┌─UnityEngine.Networking.DownloadHandler::Dispose(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d74c00 │ │ │ └─UnityEngine.Networking.DownloadHandler::Dispose
+0x02d75438 │ │ └─UnityEngine.Networking.DownloadHandlerBuffer::Dispose
+0x02d730d0 │ └─UnityEngine.Networking.UnityWebRequest::DisposeHandlers
+0x02d727d0 │ ┌─UnityEngine.Networking.UnityWebRequest::InternalDestroy(this = UnityEngine.Networking.UnityWebRequest)
+0x02d727d0 │ └─UnityEngine.Networking.UnityWebRequest::InternalDestroy
+0x02d73130 └─UnityEngine.Networking.UnityWebRequest::Dispose
+
+
+[Quest 2::re.frida.Gadget ]-> 
+[Quest 2::re.frida.Gadget ]-> 
+[Quest 2::re.frida.Gadget ]-> il2cpp: 
+0x02d74d90 ┌─UnityEngine.Networking.DownloadHandler::get_text(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d74e50 │ ┌─UnityEngine.Networking.DownloadHandler::GetText(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d75430 │ │ ┌─UnityEngine.Networking.DownloadHandlerBuffer::GetNativeData(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d75238 │ │ │ ┌─UnityEngine.Networking.DownloadHandler::InternalGetNativeArray(dh = UnityEngine.Networking.DownloadHandlerBuffer, nativeArray = ->Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]])
+0x02d75348 │ │ │ │ ┌─UnityEngine.Networking.DownloadHandler::CreateNativeArrayForNativeData(data = ->Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], bytes = 0x72a26b6bd0, length = 66)
+0x02d75348 │ │ │ │ └─UnityEngine.Networking.DownloadHandler::CreateNativeArrayForNativeData
+0x02d75238 │ │ │ └─UnityEngine.Networking.DownloadHandler::InternalGetNativeArray = Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+0x02d75430 │ │ └─UnityEngine.Networking.DownloadHandlerBuffer::GetNativeData = Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
+0x02d74f38 │ │ ┌─UnityEngine.Networking.DownloadHandler::GetTextEncoder(this = UnityEngine.Networking.DownloadHandlerBuffer)
+0x02d74f38 │ │ └─UnityEngine.Networking.DownloadHandler::GetTextEncoder = System.Text.UTF8Encoding
+0x02d74e50 │ └─UnityEngine.Networking.DownloadHandler::GetText = "{"identifier":"none","country":"TR","region":"","ageGateLimit":0}
+"
+0x02d74d90 └─UnityEngine.Networking.DownloadHandler::get_text = "{"identifier":"none","country":"TR","region":"","ageGateLimit":0}
+"
+
+il2cpp: 
+0x02d729c8 ┌─UnityEngine.Networking.UnityWebRequest::.ctor(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest, url = "https://collect.analytics.unity3d.com/api/analytics/collect/v1/projects/31527b4c-5906-426f-afdc-1b40c205fca2/environments/production", method = "POST")
+0x02d72940 │ ┌─UnityEngine.Networking.UnityWebRequest::set_url(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest, value = "https://collect.analytics.unity3d.com/api/analytics/collect/v1/projects/31527b4c-5906-426f-afdc-1b40c205fca2/environments/production")
+0x02d6f758 │ │ ┌─UnityEngineInternal.WebRequestUtils::MakeInitialUrl(targetUrl = "https://collect.analytics.unity3d.com/api/analytics/collect/v1/projects/31527b4c-5906-426f-afdc-1b40c205fca2/environments/production", localUrl = "http://localhost/")
+0x02d6faf0 │ │ │ ┌─UnityEngineInternal.WebRequestUtils::MakeUriString(targetUri = https://collect.analytics.unity3d.com/api/analytics/collect/v1/projects/31527b4c-5906-426f-afdc-1b40c205fca2/environments/production, targetUrl = "https://collect.analytics.unity3d.com/api/analytics/collect/v1/projects/31527b4c-5906-426f-afdc-1b40c205fca2/environments/production", prependProtocol = false)
+0x02d6faf0 │ │ │ └─UnityEngineInternal.WebRequestUtils::MakeUriString = "https://collect.analytics.unity3d.com/api/analytics/collect/v1/projects/31527b4c-5906-426f-afdc-1b40c205fca2/environments/production"
+0x02d6f758 │ │ └─UnityEngineInternal.WebRequestUtils::MakeInitialUrl = "https://collect.analytics.unity3d.com/api/analytics/collect/v1/projects/31527b4c-5906-426f-afdc-1b40c205fca2/environments/production"
+0x02d73a08 │ │ ┌─UnityEngine.Networking.UnityWebRequest::InternalSetUrl(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest, url = "https://collect.analytics.unity3d.com/api/analytics/collect/v1/projects/31527b4c-5906-426f-afdc-1b40c205fca2/environments/production")
+0x02d73a08 │ │ └─UnityEngine.Networking.UnityWebRequest::InternalSetUrl
+0x02d72940 │ └─UnityEngine.Networking.UnityWebRequest::set_url
+0x02d72a44 │ ┌─UnityEngine.Networking.UnityWebRequest::set_method(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest, value = "POST")
+0x02d73320 │ │ ┌─UnityEngine.Networking.UnityWebRequest::InternalSetMethod(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest, methodType = Post)
+0x02d73320 │ │ └─UnityEngine.Networking.UnityWebRequest::InternalSetMethod
+0x02d72a44 │ └─UnityEngine.Networking.UnityWebRequest::set_method
+0x02d729c8 └─UnityEngine.Networking.UnityWebRequest::.ctor
+
+il2cpp: 
+0x02d7494c ┌─UnityEngine.Networking.UploadHandlerRaw::.ctor(this = UnityEngine.Networking.UploadHandlerRaw, data = [123,34,101,118,101,110,116,76,105,115,116,34,58,91,123,34,101,118,101,110,116,78,97,109,101,34,58,34,115,100,107,83,116,97,114,116,34,44,34,117,115,101,114,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,115,101,115,115,105,111,110,73,68,34,58,34,49,48,101,48,53,52,102,52,45,53,55,102,98,45,52,48,56,57,45,57,49,50,50,45,51,51,49,51,50,102,56,55,52,48,98,50,34,44,34,101,118,101,110,116,85,85,73,68,34,58,34,57,97,54,99,101,53,53,98,45,54,49,98,55,45,52,56,97,51,45,57,52,54,97,45,53,55,97,102,99,48,99,53,54,51,48,50,34,44,34,101,118,101,110,116,84,105,109,101,115,116,97,109,112,34,58,34,50,48,50,53,45,48,53,45,49,52,32,49,52,58,52,48,58,52,52,46,53,54,56,32,43,48,51,58,48,48,34,44,34,101,118,101,110,116,86,101,114,115,105,111,110,34,58,49,44,34,117,110,105,116,121,73,110,115,116,97,108,108,97,116,105,111,110,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,101,118,101,110,116,80,97,114,97,109,115,34,58,123,34,115,100,107,86,101,114,115,105,111,110,34,58,34,52,46,49,46,48,34,44,34,103,97,109,101,66,117,110,100,108,101,73,68,34,58,34,99,111,109,46,99,108,111,117,100,104,101,97,100,103,97,109,101,115,46,112,105,115,116,111,108,119,104,105,112,34,44,34,112,108,97,116,102,111,114,109,34,58,34,65,78,68,82,79,73,68,34,44,34,105,100,102,118,34,58,34,52,51,100,99,57,99,49,57,102,100,54,99,52,48,100,102,57,51,48,98,101,50,53,100,98,100,54,48,98,55,101,48,34,44,34,98,117,105,108,100,71,85,85,73,68,34,58,34,52,98,54,53,102,57,55,100,49,98,48,102,49,101,52,52,57,57,99,101,53,97,98,51,53,55,97,100,49,48,53,97,34,44,34,99,108,105,101,110,116,86,101,114,115,105,111,110,34,58,34,49,46,53,46,54,53,46,50,48,57,34,44,34,112,114,111,106,101,99,116,73,68,34,58,34,51,49,53,50,55,98,52,99,45,53,57,48,54,45,52,50,54,102,45,97,102,100,99,45,49,98,52,48,99,50,48,53,102,99,97,50,34,44,34,115,100,107,77,101,116,104,111,100,34,58,34,99,111,109,46,117,110,105,116,121,46,115,101,114,118,105,99,101,115,46,97,110,97,108,121,116,105,99,115,46,69,118,101,110,116,115,46,83,116,97,114,116,117,112,34,44,34,115,100,107,78,97,109,101,34,58,34,99,111,109,46,117,110,105,116,121,46,115,101,114,118,105,99,101,115,46,97,110,97,108,121,116,105,99,115,34,125,125,44,123,34,101,118,101,110,116,78,97,109,101,34,58,34,99,108,105,101,110,116,68,101,118,105,99,101,34,44,34,117,115,101,114,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,115,101,115,115,105,111,110,73,68,34,58,34,49,48,101,48,53,52,102,52,45,53,55,102,98,45,52,48,56,57,45,57,49,50,50,45,51,51,49,51,50,102,56,55,52,48,98,50,34,44,34,101,118,101,110,116,85,85,73,68,34,58,34,98,55,97,49,56,56,102,56,45,48,97,52,56,45,52,56,57,50,45,57,50,55,99,45,57,51,57,54,52,51,48,99,100,53,98,56,34,44,34,101,118,101,110,116,84,105,109,101,115,116,97,109,112,34,58,34,50,48,50,53,45,48,53,45,49,52,32,49,52,58,52,48,58,52,52,46,53,55,55,32,43,48,51,58,48,48,34,44,34,101,118,101,110,116,86,101,114,115,105,111,110,34,58,49,44,34,117,110,105,116,121,73,110,115,116,97,108,108,97,116,105,111,110,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,101,118,101,110,116,80,97,114,97,109,115,34,58,123,34,103,97,109,101,66,117,110,100,108,101,73,68,34,58,34,99,111,109,46,99,108,111,117,100,104,101,97,100,103,97,109,101,115,46,112,105,115,116,111,108,119,104,105,112,34,44,34,112,108,97,116,102,111,114,109,34,58,34,65,78,68,82,79,73,68,34,44,34,105,100,102,118,34,58,34,52,51,100,99,57,99,49,57,102,100,54,99,52,48,100,102,57,51,48,98,101,50,53,100,98,100,54,48,98,55,101,48,34,44,34,98,117,105,108,100,71,85,85,73,68,34,58,34,52,98,54,53,102,57,55,100,49,98,48,102,49,101,52,52,57,57,99,101,53,97,98,51,53,55,97,100,49,48,53,97,34,44,34,99,108,105,101,110,116,86,101,114,115,105,111,110,34,58,34,49,46,53,46,54,53,46,50,48,57,34,44,34,112,114,111,106,101,99,116,73,68,34,58,34,51,49,53,50,55,98,52,99,45,53,57,48,54,45,52,50,54,102,45,97,102,100,99,45,49,98,52,48,99,50,48,53,102,99,97,50,34,44,34,115,100,107,77,101,116,104,111,100,34,58,34,99,111,109,46,117,110,105,116,121,46,115,101,114,118,105,99,101,115,46,97,110,97,108,121,116,105,99,115,46,69,118,101,110,116,115,46,83,116,97,114,116,117,112,34,44,34,99,112,117,84,121,112,101,34,58,34,65,82,77,54,52,34,44,34,103,112,117,84,121,112,101,34,58,34,65,100,114,101,110,111,32,40,84,77,41,32,54,53,48,34,44,34,99,112,117,67,111,114,101,115,34,58,51,44,34,114,97,109,84,111,116,97,108,34,58,53,56,51,50,44,34,115,99,114,101,101,110,87,105,100,116,104,34,58,51,54,54,52,44,34,115,99,114,101,101,110,72,101,105,103,104,116,34,58,49,57,50,48,44,34,115,99,114,101,101,110,82,101,115,111,108,117,116,105,111,110,34,58,50,48,48,125,125,44,123,34,101,118,101,110,116,78,97,109,101,34,58,34,103,97,109,101,83,116,97,114,116,101,100,34,44,34,117,115,101,114,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,115,101,115,115,105,111,110,73,68,34,58,34,49,48,101,48,53,52,102,52,45,53,55,102,98,45,52,48,56,57,45,57,49,50,50,45,51,51,49,51,50,102,56,55,52,48,98,50,34,44,34,101,118,101,110,116,85,85,73,68,34,58,34,54,49,97,56,97,99,53,50,45,97,101,100,51,45,52,52,52,98,45,98,53,97,52,45,50,51,50,56,99,102,102,98,97,52,53,57,34,44,34,101,118,101,110,116,84,105,109,101,115,116,97,109,112,34,58,34,50,48,50,53,45,48,53,45,49,52,32,49,52,58,52,48,58,52,52,46,53,55,55,32,43,48,51,58,48,48,34,44,34,101,118,101,110,116,86,101,114,115,105,111,110,34,58,49,44,34,117,110,105,116,121,73,110,115,116,97,108,108,97,116,105,111,110,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,101,118,101,110,116,80,97,114,97,109,115,34,58,123,34,103,97,109,101,66,117,110,100,108,101,73,68,34,58,34,99,111,109,46,99,108,111,117,100,104,101,97,100,103,97,109,101,115,46,112,105,115,116,111,108,119,104,105,112,34,44,34,112,108,97,116,102,111,114,109,34,58,34,65,78,68,82,79,73,68,34,44,34,105,100,102,118,34,58,34,52,51,100,99,57,99,49,57,102,100,54,99,52,48,100,102,57,51,48,98,101,50,53,100,98,100,54,48,98,55,101,48,34,44,34,98,117,105,108,100,71,85,85,73,68,34,58,34,52,98,54,53,102,57,55,100,49,98,48,102,49,101,52,52,57,57,99,101,53,97,98,51,53,55,97,100,49,48,53,97,34,44,34,99,108,105,101,110,116,86,101,114,115,105,111,110,34,58,34,49,46,53,46,54,53,46,50,48,57,34,44,34,112,114,111,106,101,99,116,73,68,34,58,34,51,49,53,50,55,98,52,99,45,53,57,48,54,45,52,50,54,102,45,97,102,100,99,45,49,98,52,48,99,50,48,53,102,99,97,50,34,44,34,115,100,107,77,101,116,104,111,100,34,58,34,99,111,109,46,117,110,105,116,121,46,115,101,114,118,105,99,101,115,46,97,110,97,108,121,116,105,99,115,46,69,118,101,110,116,115,46,83,116,97,114,116,117,112,34,44,34,117,115,101,114,76,111,99,97,108,101,34,58,34,116,114,95,90,90,34,44,34,105,100,76,111,99,97,108,80,114,111,106,101,99,116,34,58,34,52,98,54,53,102,57,55,100,49,98,48,102,49,101,52,52,57,57,99,101,53,97,98,51,53,55,97,100,49,48,53,97,34,44,34,111,115,86,101,114,115,105,111,110,34,58,34,65,110,100,114,111,105,100,32,79,83,32,49,52,32,47,32,65,80,73,45,51,52,32,40,85,80,49,65,46,50,51,49,48,48,53,46,48,48,55,46,65,49,47,53,49,53,52,48,56,52,48,48,55,54,55,48,48,49,53,48,41,34,44,34,105,115,84,105,110,121,34,58,102,97,108,115,101,44,34,100,101,98,117,103,68,101,118,105,99,101,34,58,102,97,108,115,101,125,125,93,125])
+0x02d756b0 │ ┌─UnityEngine.Networking.UploadHandlerRaw::.ctor(this = UnityEngine.Networking.UploadHandlerRaw, data = Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], transferOwnership = true)
+0x02d756b0 │ └─UnityEngine.Networking.UploadHandlerRaw::.ctor
+0x02d7494c └─UnityEngine.Networking.UploadHandlerRaw::.ctor
+
+il2cpp: 
+0x02d755c8 ┌─UnityEngine.Networking.UploadHandler::set_contentType(this = UnityEngine.Networking.UploadHandlerRaw, value = "application/json")
+0x02d755d4 │ ┌─UnityEngine.Networking.UploadHandler::SetContentType(this = UnityEngine.Networking.UploadHandlerRaw, newContentType = "application/json")
+0x02d755d4 │ └─UnityEngine.Networking.UploadHandler::SetContentType
+0x02d755c8 └─UnityEngine.Networking.UploadHandler::set_contentType
+
+il2cpp: 
+0x02d72d84 ┌─UnityEngine.Networking.UnityWebRequest::set_uploadHandler(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest, value = UnityEngine.Networking.UploadHandlerRaw)
+0x02d72d84 └─UnityEngine.Networking.UnityWebRequest::set_uploadHandler
+
+il2cpp: 
+0x02d73280 ┌─UnityEngine.Networking.UnityWebRequest::SendWebRequest(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest)
+0x02d73280 └─UnityEngine.Networking.UnityWebRequest::SendWebRequest = UnityEngine.Networking.UnityWebRequestAsyncOperation
+
+il2cpp: 
+0x02d73954 ┌─UnityEngine.Networking.UnityWebRequest::get_responseCode(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest)
+0x02d73954 └─UnityEngine.Networking.UnityWebRequest::get_responseCode = 204
+
+il2cpp: 
+0x02d73cbc ┌─UnityEngine.Networking.UnityWebRequest::get_isNetworkError(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest)
+0x02d73cbc └─UnityEngine.Networking.UnityWebRequest::get_isNetworkError = false
+
+il2cpp: 
+0x02d73130 ┌─UnityEngine.Networking.UnityWebRequest::Dispose(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest)
+0x02d730d0 │ ┌─UnityEngine.Networking.UnityWebRequest::DisposeHandlers(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest)
+0x02d757c4 │ │ ┌─UnityEngine.Networking.UploadHandlerRaw::Dispose(this = UnityEngine.Networking.UploadHandlerRaw)
+0x02d75534 │ │ │ ┌─UnityEngine.Networking.UploadHandler::Dispose(this = UnityEngine.Networking.UploadHandlerRaw)
+0x02d75534 │ │ │ └─UnityEngine.Networking.UploadHandler::Dispose
+0x02d757c4 │ │ └─UnityEngine.Networking.UploadHandlerRaw::Dispose
+0x02d730d0 │ └─UnityEngine.Networking.UnityWebRequest::DisposeHandlers
+0x02d727d0 │ ┌─UnityEngine.Networking.UnityWebRequest::InternalDestroy(this = Unity.Services.Analytics.Internal.AnalyticsWebRequest)
+0x02d727d0 │ └─UnityEngine.Networking.UnityWebRequest::InternalDestroy
+0x02d73130 └─UnityEngine.Networking.UnityWebRequest::Dispose
+
+
+[Quest 2::re.frida.Gadget ]-> il2cpp: 
+0x02d7494c ┌─UnityEngine.Networking.UploadHandlerRaw::.ctor(this = UnityEngine.Networking.UploadHandlerRaw, data = [123,34,101,118,101,110,116,76,105,115,116,34,58,91,123,34,101,118,101,110,116,78,97,109,101,34,58,34,97,117,116,111,95,110,97,118,34,44,34,117,115,101,114,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,115,101,115,115,105,111,110,73,68,34,58,34,49,48,101,48,53,52,102,52,45,53,55,102,98,45,52,48,56,57,45,57,49,50,50,45,51,51,49,51,50,102,56,55,52,48,98,50,34,44,34,101,118,101,110,116,85,85,73,68,34,58,34,55,100,99,49,98,101,51,98,45,56,52,50,51,45,52,102,97,51,45,56,55,98,99,45,54,49,57,48,54,49,49,48,51,99,53,52,34,44,34,101,118,101,110,116,84,105,109,101,115,116,97,109,112,34,58,34,50,48,50,53,45,48,53,45,49,52,32,49,52,58,52,49,58,52,50,46,56,48,50,32,43,48,51,58,48,48,34,44,34,101,118,101,110,116,80,97,114,97,109,115,34,58,123,34,97,112,112,95,118,101,114,115,105,111,110,34,58,34,49,46,53,46,54,53,46,50,48,57,34,44,34,108,97,110,103,117,97,103,101,34,58,34,101,110,34,44,34,116,105,109,101,34,58,48,44,34,118,114,95,112,108,97,116,102,111,114,109,34,58,34,79,67,85,76,85,83,95,81,85,69,83,84,95,50,34,44,34,108,101,118,101,108,110,97,109,101,34,58,34,84,117,116,111,114,105,97,108,34,44,34,110,97,118,95,100,101,115,116,105,110,97,116,105,111,110,34,58,34,84,117,116,111,114,105,97,108,95,69,97,115,121,58,34,44,34,110,97,118,95,102,101,97,116,117,114,101,34,58,34,83,101,116,116,105,110,103,115,34,44,34,110,97,118,95,115,111,117,114,99,101,34,58,34,77,65,73,78,77,69,78,85,34,125,125,44,123,34,101,118,101,110,116,78,97,109,101,34,58,34,103,97,109,101,82,117,110,110,105,110,103,34,44,34,117,115,101,114,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,115,101,115,115,105,111,110,73,68,34,58,34,49,48,101,48,53,52,102,52,45,53,55,102,98,45,52,48,56,57,45,57,49,50,50,45,51,51,49,51,50,102,56,55,52,48,98,50,34,44,34,101,118,101,110,116,85,85,73,68,34,58,34,52,52,53,101,56,51,97,53,45,50,53,100,51,45,52,55,54,97,45,57,54,55,101,45,99,51,102,51,53,54,97,97,57,54,57,52,34,44,34,101,118,101,110,116,84,105,109,101,115,116,97,109,112,34,58,34,50,48,50,53,45,48,53,45,49,52,32,49,52,58,52,49,58,52,51,46,48,55,56,32,43,48,51,58,48,48,34,44,34,101,118,101,110,116,86,101,114,115,105,111,110,34,58,49,44,34,117,110,105,116,121,73,110,115,116,97,108,108,97,116,105,111,110,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,101,118,101,110,116,80,97,114,97,109,115,34,58,123,34,103,97,109,101,66,117,110,100,108,101,73,68,34,58,34,99,111,109,46,99,108,111,117,100,104,101,97,100,103,97,109,101,115,46,112,105,115,116,111,108,119,104,105,112,34,44,34,112,108,97,116,102,111,114,109,34,58,34,65,78,68,82,79,73,68,34,44,34,105,100,102,118,34,58,34,52,51,100,99,57,99,49,57,102,100,54,99,52,48,100,102,57,51,48,98,101,50,53,100,98,100,54,48,98,55,101,48,34,44,34,98,117,105,108,100,71,85,85,73,68,34,58,34,52,98,54,53,102,57,55,100,49,98,48,102,49,101,52,52,57,57,99,101,53,97,98,51,53,55,97,100,49,48,53,97,34,44,34,99,108,105,101,110,116,86,101,114,115,105,111,110,34,58,34,49,46,53,46,54,53,46,50,48,57,34,44,34,100,101,118,105,99,101,86,111,108,117,109,101,34,58,48,46,55,51,51,51,51,51,51,52,57,50,50,55,57,48,53,44,34,98,97,116,116,101,114,121,76,111,97,100,34,58,49,44,34,112,114,111,106,101,99,116,73,68,34,58,34,51,49,53,50,55,98,52,99,45,53,57,48,54,45,52,50,54,102,45,97,102,100,99,45,49,98,52,48,99,50,48,53,102,99,97,50,34,44,34,115,100,107,77,101,116,104,111,100,34,58,34,99,111,109,46,117,110,105,116,121,46,115,101,114,118,105,99,101,115,46,97,110,97,108,121,116,105,99,115,46,69,118,101,110,116,115,46,73,110,116,101,114,110,97,108,84,105,99,107,34,125,125,93,125])
+0x02d756b0 │ ┌─UnityEngine.Networking.UploadHandlerRaw::.ctor(this = UnityEngine.Networking.UploadHandlerRaw, data = Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], transferOwnership = true)
+0x02d756b0 │ └─UnityEngine.Networking.UploadHandlerRaw::.ctor
+0x02d7494c └─UnityEngine.Networking.UploadHandlerRaw::.ctor
+
+
+[Quest 2::re.frida.Gadget ]-> 
+[Quest 2::re.frida.Gadget ]-> il2cpp: 
+0x02d7494c ┌─UnityEngine.Networking.UploadHandlerRaw::.ctor(this = UnityEngine.Networking.UploadHandlerRaw, data = [123,34,101,118,101,110,116,76,105,115,116,34,58,91,123,34,101,118,101,110,116,78,97,109,101,34,58,34,103,97,109,101,82,117,110,110,105,110,103,34,44,34,117,115,101,114,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,115,101,115,115,105,111,110,73,68,34,58,34,49,48,101,48,53,52,102,52,45,53,55,102,98,45,52,48,56,57,45,57,49,50,50,45,51,51,49,51,50,102,56,55,52,48,98,50,34,44,34,101,118,101,110,116,85,85,73,68,34,58,34,102,53,48,102,102,48,52,55,45,102,51,55,102,45,52,97,101,54,45,97,53,102,102,45,54,51,99,50,99,54,54,54,101,53,54,49,34,44,34,101,118,101,110,116,84,105,109,101,115,116,97,109,112,34,58,34,50,48,50,53,45,48,53,45,49,52,32,49,52,58,52,50,58,52,51,46,48,55,56,32,43,48,51,58,48,48,34,44,34,101,118,101,110,116,86,101,114,115,105,111,110,34,58,49,44,34,117,110,105,116,121,73,110,115,116,97,108,108,97,116,105,111,110,73,68,34,58,34,49,99,55,97,99,49,98,57,97,99,101,49,57,48,53,101,49,57,101,53,102,97,97,55,48,101,57,97,100,56,48,54,34,44,34,101,118,101,110,116,80,97,114,97,109,115,34,58,123,34,103,97,109,101,66,117,110,100,108,101,73,68,34,58,34,99,111,109,46,99,108,111,117,100,104,101,97,100,103,97,109,101,115,46,112,105,115,116,111,108,119,104,105,112,34,44,34,112,108,97,116,102,111,114,109,34,58,34,65,78,68,82,79,73,68,34,44,34,105,100,102,118,34,58,34,52,51,100,99,57,99,49,57,102,100,54,99,52,48,100,102,57,51,48,98,101,50,53,100,98,100,54,48,98,55,101,48,34,44,34,98,117,105,108,100,71,85,85,73,68,34,58,34,52,98,54,53,102,57,55,100,49,98,48,102,49,101,52,52,57,57,99,101,53,97,98,51,53,55,97,100,49,48,53,97,34,44,34,99,108,105,101,110,116,86,101,114,115,105,111,110,34,58,34,49,46,53,46,54,53,46,50,48,57,34,44,34,100,101,118,105,99,101,86,111,108,117,109,101,34,58,48,46,55,51,51,51,51,51,51,52,57,50,50,55,57,48,53,44,34,98,97,116,116,101,114,121,76,111,97,100,34,58,49,44,34,112,114,111,106,101,99,116,73,68,34,58,34,51,49,53,50,55,98,52,99,45,53,57,48,54,45,52,50,54,102,45,97,102,100,99,45,49,98,52,48,99,50,48,53,102,99,97,50,34,44,34,115,100,107,77,101,116,104,111,100,34,58,34,99,111,109,46,117,110,105,116,121,46,115,101,114,118,105,99,101,115,46,97,110,97,108,121,116,105,99,115,46,69,118,101,110,116,115,46,73,110,116,101,114,110,97,108,84,105,99,107,34,125,125,93,125])
+0x02d756b0 │ ┌─UnityEngine.Networking.UploadHandlerRaw::.ctor(this = UnityEngine.Networking.UploadHandlerRaw, data = Unity.Collections.NativeArray`1[[System.Byte, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], transferOwnership = true)
+0x02d756b0 │ └─UnityEngine.Networking.UploadHandlerRaw::.ctor
+0x02d7494c └─UnityEngine.Networking.UploadHandlerRaw::.ctor
+
+Connection terminated
+
+Thank you for using Frida!
+Fatal Python error: _enter_buffered_busy: could not acquire lock for <_io.BufferedReader name='<stdin>'> at interpreter shutdown, possibly due to daemon threads
+Python runtime state: finalizing (tstate=0x00000001020184a0)
+
+Current thread 0x0000000205198c00 (most recent call first):
+  <no Python frame>

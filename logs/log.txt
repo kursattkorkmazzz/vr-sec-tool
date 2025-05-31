@@ -1,0 +1,13 @@
+     ____
+    / _  |   Frida 16.5.2 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   More info at https://frida.re/docs/home/
+   . . . .
+   . . . .   Connected to Quest 2 (id=1WMHHA4CHY2136)
+Spawning `re.frida.Gadget`...
+Failed to spawn: need Gadget to attach on jailed Android; its default location is: /Users/kursat/.cache/frida/gadget-android-arm64.so

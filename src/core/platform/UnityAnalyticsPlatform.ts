@@ -1,41 +1,58 @@
-import WhitelistAuthorizator from "../authorizators/WhitelistAuthorizator";
-import IAuthorizator from "../interfaces/IAuthorizator";
+import Config from "../config/Config";
 import IPlatform from "../interfaces/IPlatform";
 import Logger from "../utils/Logger";
-import UploadHandlerPayloadReader from "../utils/UploadHandlerPayloadReader";
 
+const CHANGE_DATA = Config.CHANGE_DATA;
 export default class UnityAnalyticsPlatform implements IPlatform {
-  UnityAnalyticsInternalAssembly: Il2Cpp.Image;
-  WebRequestHelper: Il2Cpp.Class;
-  CreateWebRequest: Il2Cpp.Method;
+  handleFunctions(): void {
+    const start = Date.now();
 
-  constructor() {
-    this.UnityAnalyticsInternalAssembly = Il2Cpp.domain.assembly(
+    const UnityAnalyticsInternalAssembly = Il2Cpp.domain.tryAssembly(
       "Unity.Services.Analytics"
-    ).image;
-    this.WebRequestHelper = this.UnityAnalyticsInternalAssembly.class(
+    );
+    if (!UnityAnalyticsInternalAssembly) {
+      Logger.warn(
+        "UnityAnalyticsPlatform disabled because there is no specified module."
+      );
+      return;
+    }
+    const UnityAnalyticInternalImage = UnityAnalyticsInternalAssembly.image;
+    const WebRequestHelper = UnityAnalyticInternalImage.tryClass(
       "Unity.Services.Analytics.Internal.WebRequestHelper"
     );
-    this.CreateWebRequest = this.WebRequestHelper.method("CreateWebRequest")
+    if (!WebRequestHelper) return;
+    const CreateWebRequest = WebRequestHelper.tryMethod("CreateWebRequest");
+    if (!CreateWebRequest) return;
 
-    
-  }
+    Logger.success("UnityAnalyticsPlatform enabled.");
 
-  handleFunctions(): void {
-    this.injection();
-    //Il2Cpp.trace(true).methods(this.CreateWebRequest).and().attach();
-    return;
-  }
+    if (CHANGE_DATA) {
+      Logger.info("UnityAnalyticsPlatform data changing is activated.");
+    }
 
-  private injection(): void {
-    this.CreateWebRequest.implementation = function (this,...params: Il2Cpp.Parameter.Type[]) {
-      const url = Il2Cpp.string("https://mock-bdae381a474442bf961d953a4caf67e7.mock.insomnia.rest/pistol");
+    CreateWebRequest.implementation = function (
+      this,
+      ...params: Il2Cpp.Parameter.Type[]
+    ) {
+      const url = Il2Cpp.string(Config.MOCKUP_SERVER);
       const type = Il2Cpp.string("POST");
-      const payload = Il2Cpp.array<number>( Il2Cpp.corlib.class("Sytem.Byte"), [1, 2, 3, 4]);
 
-      
+      const payloadObject = { AYBU: "VRSEC TEAM" };
 
-      return this.method("CreateWebRequest").invoke( url,type,payload );
+      const changedPayload = Il2Cpp.array<number>(
+        Il2Cpp.corlib.class("System.Byte"),
+        JSON.stringify(payloadObject)
+          .split("")
+          .map((char) => char.charCodeAt(0))
+      );
+      return this.method("CreateWebRequest").invoke(
+        url,
+        type,
+        CHANGE_DATA ? changedPayload : params[2]
+      );
     };
+    const duration = Date.now() - start;
+    Config.TELEMETRY && Logger.info("Injection time: " + duration + "ms");
+    Logger.info("UnityAnalyticsPlatform CreateWebRequest handler enabled.");
   }
 }
