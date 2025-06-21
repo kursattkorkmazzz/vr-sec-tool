@@ -2,8 +2,8 @@
 
 # --- Configuration ---
 LOG_INTERVAL=2 # Seconds between logs (default, can be overridden by user)
-OUTPUT_FILE="USAGE_INJECTED_fruitninjavr.csv"
-APP_PACKAGE="com.halfbrick.fruitninjavr" # Package name of the app to monitor
+OUTPUT_FILE="USAGE_ORIGINAL_vandettaForever.csv"
+APP_PACKAGE="com.MeatSpace.Nakatomi" # Package name of the app to monitor
 SELECTED_DEVICE="1WMHHA4CHY2136" # Device ID to monitor, will be set after device selection,
 LOG_INTERVAL=0 # Total duration for logging in seconds, 0 for continuous logging
 LOG_DURATION_SECONDS=10 # Default logging duration in seconds, can be overridden by user input
