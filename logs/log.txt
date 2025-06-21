@@ -1,0 +1,17 @@
+     ____
+    / _  |   Frida 16.5.2 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   More info at https://frida.re/docs/home/
+   . . . .
+   . . . .   Connected to Quest 2 (id=1WMHHA4CHY2136)
+Spawning `re.frida.Gadget`...
+Spawned `re.frida.Gadget`. Resuming main thread!
+[Quest 2::re.frida.Gadget ]-> 
+[Quest 2::re.frida.Gadget ]-> exit
+
+Thank you for using Frida!
