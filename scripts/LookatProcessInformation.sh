@@ -1,20 +1,66 @@
 #!/bin/bash
+#
+# LookatProcessInformation.sh - Resource Usage Monitor for VR Applications
+#
+# This script monitors CPU and memory usage of a specified VR application
+# running on a connected Meta Quest device. Data is logged to a CSV file
+# for performance analysis and overhead measurement.
+#
+# Purpose:
+#   Measure the performance impact of Frida instrumentation by comparing
+#   resource usage before (ORIGINAL) and after (INJECTED) injection.
+#
+# Output Format (CSV):
+#   Timestamp, DeviceID, PackageName, CPU_Usage(%), Memory_Usage_PSS(KB)
+#
+# Prerequisites:
+#   - ADB (Android Debug Bridge) installed and in PATH
+#   - Meta Quest device connected via USB with developer mode enabled
+#   - Target application must be running on the device
+#
+# Usage:
+#   1. Edit the configuration variables below
+#   2. Run: ./LookatProcessInformation.sh
+#   3. Press Ctrl+C to stop logging early
+#
+# Author: AYBU VR Security Research Team
+#
 
-# --- Configuration ---
-LOG_INTERVAL=2 # Seconds between logs (default, can be overridden by user)
+# ============================================================================
+# CONFIGURATION - Edit these variables before running
+# ============================================================================
+
+# Seconds between each log entry (sampling interval)
+LOG_INTERVAL=2
+
+# Output CSV filename - use naming convention:
+#   USAGE_ORIGINAL_<appname>.csv  - for baseline measurements
+#   USAGE_INJECTED_<appname>.csv  - for instrumented measurements
 OUTPUT_FILE="USAGE_ORIGINAL_vandettaForever.csv"
-APP_PACKAGE="com.MeatSpace.Nakatomi" # Package name of the app to monitor
-SELECTED_DEVICE="1WMHHA4CHY2136" # Device ID to monitor, will be set after device selection,
-LOG_INTERVAL=0 # Total duration for logging in seconds, 0 for continuous logging
-LOG_DURATION_SECONDS=10 # Default logging duration in seconds, can be overridden by user input
-# MAX_LOGS=0 # 0 for infinite logging based on entries, otherwise set a number. Now duration is primary.
 
-# --- Helper Functions ---
+# Package name of the VR application to monitor
+# Find with: adb shell pm list packages | grep <appname>
+APP_PACKAGE="com.MeatSpace.Nakatomi"
+
+# Device serial number (from 'adb devices' output)
+SELECTED_DEVICE="1WMHHA4CHY2136"
+
+# Total duration for logging in seconds (0 = continuous until Ctrl+C)
+LOG_DURATION_SECONDS=10
+
+# ============================================================================
+# HELPER FUNCTIONS
+# ============================================================================
+
+# Returns current timestamp in YYYY-MM-DD HH:MM:SS format
 get_timestamp() {
   date +"%Y-%m-%d %H:%M:%S"
 }
 
-# --- Main Script ---
+# ============================================================================
+# MAIN SCRIPT
+# ============================================================================
+
 echo "🔍 Searching for connected Android devices..."
 DEVICES=$(adb devices | grep -w "device" | awk '{print $1}')
 

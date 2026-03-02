@@ -1,9 +1,33 @@
+/**
+ * UnityAnalyticsPlatform - Unity Analytics interception module
+ * 
+ * This module hooks into Unity's Analytics service to intercept
+ * telemetry and analytics data being sent to Unity's servers.
+ * 
+ * Target: Unity.Services.Analytics.Internal.WebRequestHelper.CreateWebRequest
+ * 
+ * Use cases:
+ * - Block analytics data collection
+ * - Redirect analytics to controlled endpoint
+ * - Sanitize analytics payloads
+ */
+
 import Config from "../config/Config";
 import IPlatform from "../interfaces/IPlatform";
 import Logger from "../utils/Logger";
 
 const CHANGE_DATA = Config.CHANGE_DATA;
+
+/**
+ * Platform handler for intercepting Unity Analytics network calls.
+ * Implements the IPlatform interface for standardized hook management.
+ */
 export default class UnityAnalyticsPlatform implements IPlatform {
+  /**
+   * Initializes Unity Analytics hooks.
+   * Locates the WebRequestHelper class and hooks the CreateWebRequest method
+   * to intercept and optionally modify analytics transmissions.
+   */
   handleFunctions(): void {
     const start = Date.now();
 

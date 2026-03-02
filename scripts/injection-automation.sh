@@ -1,10 +1,42 @@
 #!/usr/bin/env bash
+#
+# injection-automation.sh - Automated Frida Gadget Injection Script
+#
+# This script automates the process of injecting Frida Gadget into
+# Unity-based VR applications for dynamic instrumentation.
+#
+# Workflow:
+#   1. Pull the original APK from a connected Meta Quest device
+#   2. Inject Frida Gadget into the APK (arm64 architecture)
+#   3. Sign the modified APK for installation
+#   4. Uninstall the original app and install the injected version
+#   5. Restore OBB data files if present
+#
+# Prerequisites:
+#   - ADB (Android Debug Bridge) installed and in PATH
+#   - frida-gadget tool installed (pip install frida-tools)
+#   - Meta Quest device connected via USB with developer mode enabled
+#
+# Usage:
+#   ./injection-automation.sh <folder_name> <apk_path> <package_name>
+#
+# Arguments:
+#   folder_name   - Output folder name for extracted/processed files
+#   apk_path      - Full path to the APK on the device (e.g., /data/app/com.example/base.apk)
+#   package_name  - Application package name (e.g., com.example.app)
+#
+# Example:
+#   ./injection-automation.sh pistolwhip /data/app/com.cloudheadgames.pistolwhip/base.apk com.cloudheadgames.pistolwhip
+#
+# Author: AYBU VR Security Research Team
+#
+
 folder_name="$1"
 apk_base="$2"
 obb_base="$3"
 
 
-# Check if the required arguments are provided
+# Validate required arguments
 if [[ -z $apk_base || -z $folder_name ]];
 then
     echo "Usage: $0 <folder_name> <apk_base> <obb_base>"
@@ -12,6 +44,7 @@ then
 fi
 
 
+# Step 1: Pull APK from device
 function get_apk {
     mkdir "./$folder_name"
     echo "Pulling APK from device => $apk_base"

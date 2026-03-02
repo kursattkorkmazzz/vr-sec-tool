@@ -1,30 +1,31 @@
-# Enjeksiyonu başarılı olanlar
+# Successful Injections
 
-**Veri olanlar**
+**Data Leak Detected**
 
-- All in one sports (Veri var)
-- Underdogs (Veri var)
-- Drone Simulator (Veri var)
-- Synthriders (Veri var)
-- Agent Simulator (Veri var)
-- Pistowhip (Veri var)
-- Superhot (Veri var)
+- All in one sports (Data detected)
+- Underdogs (Data detected)
+- Drone Simulator (Data detected)
+- Synthriders (Data detected)
+- Agent Simulator (Data detected)
+- Pistowhip (Data detected)
+- Superhot (Data detected)
 
-**Ver olmayanlar**
+**No Data Leak Detected**
 
-Frida log klasörünün içerisinde ilgili uygulamanın log verilerini bulabilirisniz.
+You can find the log data for each application in the Frida logs folder.
 
-- I am security (Veri yok)
-- Crowbar (Veri yok)
-- Fruit Ninja VR 2 (Veri çekimi)
-- The thrill of the fight (Veri yok)
-- Walked the plank VR (Veri yok)
-- Fruit Ninja VR (Veri yok)
-- Job Simulator (Veri Yok)
+- I am security (No data)
+- Crowbar (No data)
+- Fruit Ninja VR 2 (Data extraction)
+- The thrill of the fight (No data)
+- Walked the plank VR (No data)
+- Fruit Ninja VR (No data)
+- Job Simulator (No data)
 
-# Enjeksiyonu başarısız olanlar
+# Failed Injections
 
-- Beatable (DLL Yok)
-- Bartender (UE Yapımı)
-- Stellerium (UE Yapımı)
-- Lego Brick Tales (UE Yapımı)
+- Beatable (No DLL found)
+- Bartender (Unreal Engine - Not supported)
+- Stellerium (Unreal Engine - Not supported)
+- Lego Brick Tales (Unreal Engine - Not supported)
+

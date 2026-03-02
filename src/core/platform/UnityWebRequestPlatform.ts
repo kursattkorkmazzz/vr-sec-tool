@@ -1,182 +1,215 @@
-import Config from "../config/Config";
+/**
+ * UnityWebRequestPlatform - Core Network Interception Module
+ * ==========================================================
+ *
+ * PURPOSE:
+ *   Hooks into Unity's UnityWebRequest to intercept and redirect
+ *   all HTTP/HTTPS traffic from VR applications to our mock server.
+ *
+ * HOW IT WORKS (3 steps):
+ *   1. Find the UnityWebRequest class inside the running app (IL2CPP)
+ *   2. Replace constructor & setter methods with our custom versions
+ *   3. Our versions redirect URLs → mock server, and optionally swap payloads
+ *
+ * HOOKS INSTALLED:
+ *   ┌─────────────────────────┬────────────────────────────────────┐
+ *   │ Hook Target             │ What It Does                       │
+ *   ├─────────────────────────┼────────────────────────────────────┤
+ *   │ .ctor(url)              │ Redirects URL to mock server       │
+ *   │ .ctor(url, method)      │ Redirects URL to mock server       │
+ *   │ .ctor(url, method, ...) │ Redirects URL to mock server       │
+ *   │ set_url(url)            │ Forces URL to mock server          │
+ *   │ set_uploadHandler(h)    │ Replaces upload payload (optional) │
+ *   └─────────────────────────┴────────────────────────────────────┘
+ */
 
+import Config from "../config/Config";
 import IPlatform from "../interfaces/IPlatform";
 import isValidUrl from "../utils/isValidUrl";
 import Logger from "../utils/Logger";
-const CHANGE_DATA = Config.CHANGE_DATA;
+
 export default class UnityWebRequestPlatform implements IPlatform {
+
+  // ──────────────────────────────────────────────
+  // MAIN ENTRY POINT
+  // ──────────────────────────────────────────────
+
   handleFunctions(): void {
-    const start = Date.now();
-    const UnityWebRequestAssembly = Il2Cpp.domain.tryAssembly(
-      "UnityEngine.UnityWebRequestModule"
-    );
-    if (!UnityWebRequestAssembly) {
-      Logger.warn("UnityWebRequestPlatform disabled.");
+
+    // STEP 1 — Locate the UnityWebRequest class in memory
+    const assembly = Il2Cpp.domain.tryAssembly("UnityEngine.UnityWebRequestModule");
+    if (!assembly) {
+      Logger.warn("UnityWebRequestPlatform disabled — assembly not found.");
       return;
     }
-    const UnityWebRequestAssemblyImage = UnityWebRequestAssembly.image;
-    const UnityWebRequest = UnityWebRequestAssemblyImage.tryClass(
+
+    const UnityWebRequest = assembly.image.tryClass(
       "UnityEngine.Networking.UnityWebRequest"
     );
     if (!UnityWebRequest) return;
 
-    const ctorMethods = UnityWebRequest.method(".ctor");
-    if (!ctorMethods) return;
+    const ctor = UnityWebRequest.method(".ctor");
+    if (!ctor) return;
 
     Logger.success("UnityWebRequestPlatform enabled.");
 
-    // #region Constructor handlers
+    // STEP 2 — Hook each constructor overload to redirect URLs
+    this.hookConstructor_Url(ctor);
+    this.hookConstructor_UrlMethod(ctor);
+    this.hookConstructor_UrlMethodHandlers(ctor);
 
-    // String constructor handler.
-    const ctorJustUrl = ctorMethods.tryOverload("System.String");
-    if (ctorJustUrl) {
-      ctorJustUrl.implementation = function (
-        this,
-        ...parameters: Il2Cpp.Parameter.Type[]
-      ) {
-        const url = parameters[0] as Il2Cpp.String;
-        const isValid = isValidUrl(url.content);
+    // STEP 3 — Hook setters
+    this.hookSetUrl(UnityWebRequest);
 
-        return this.method(".ctor")
-          .overload("System.String")
-          .invoke(
-            isValid && Config.JUST_LISTEN
-              ? Il2Cpp.string(Config.MOCKUP_SERVER)
-              : parameters[0]
-          );
-      };
-      Logger.success(
-        "UnityWebRequestPlatform (String) constructor handler enabled."
-      );
+    if (Config.CHANGE_DATA) {
+      this.hookSetUploadHandler(UnityWebRequest);
+      Logger.info("Payload modification activated.");
     }
+  }
 
-    // String String constructor handler.
-    const ctorURLConstructor = ctorMethods.tryOverload(
-      "System.String",
-      "System.String"
-    );
+  // ──────────────────────────────────────────────
+  // CONSTRUCTOR HOOKS  (redirect URL → mock server)
+  // ──────────────────────────────────────────────
 
-    if (ctorURLConstructor) {
-      ctorURLConstructor.implementation = function (
-        this,
-        ...parameters: Il2Cpp.Parameter.Type[]
-      ) {
-        return this.method(".ctor")
-          .overload("System.String", "System.String")
-          .invoke(Il2Cpp.string(Config.MOCKUP_SERVER), ...parameters.slice(1));
-      };
+  /**
+   * Hook: new UnityWebRequest(url)
+   * If URL is valid HTTP(S), redirect to mock server.
+   */
+  private hookConstructor_Url(ctor: Il2Cpp.Method): void {
+    const overload = ctor.tryOverload("System.String");
+    if (!overload) return;
 
-      Logger.success(
-        "UnityWebRequestPlatform (String,String) constructor handler enabled."
-      );
-    }
+    overload.implementation = function (this, ...params: Il2Cpp.Parameter.Type[]) {
+      const url = params[0] as Il2Cpp.String;
 
-    // String String DownloadHandler UploadHandler constructor handler.
-    const UploadHandlerClass = Il2Cpp.domain
-      .assembly("UnityEngine.UnityWebRequestModule")
-      .image.class("UnityEngine.Networking.UploadHandler");
-    const DownloadHandlerClass = Il2Cpp.domain
+      // Only redirect valid HTTP/HTTPS URLs
+      const shouldRedirect = isValidUrl(url.content) && Config.JUST_LISTEN;
+
+      const targetUrl = shouldRedirect
+        ? Il2Cpp.string(Config.MOCKUP_SERVER)  // → redirect to our server
+        : params[0];                            // → keep original URL
+
+      return this.method(".ctor").overload("System.String").invoke(targetUrl);
+    };
+
+    Logger.success("Hooked .ctor(String)");
+  }
+
+  /**
+   * Hook: new UnityWebRequest(url, httpMethod)
+   * Always redirects URL to mock server, keeps HTTP method unchanged.
+   */
+  private hookConstructor_UrlMethod(ctor: Il2Cpp.Method): void {
+    const overload = ctor.tryOverload("System.String", "System.String");
+    if (!overload) return;
+
+    overload.implementation = function (this, ...params: Il2Cpp.Parameter.Type[]) {
+      const mockUrl = Il2Cpp.string(Config.MOCKUP_SERVER);
+      const httpMethod = params[1]; // GET, POST, etc. — unchanged
+
+      return this.method(".ctor")
+        .overload("System.String", "System.String")
+        .invoke(mockUrl, httpMethod);
+    };
+
+    Logger.success("Hooked .ctor(String, String)");
+  }
+
+  /**
+   * Hook: new UnityWebRequest(url, method, downloadHandler, uploadHandler)
+   * Redirects URL, passes handlers through unchanged.
+   */
+  private hookConstructor_UrlMethodHandlers(ctor: Il2Cpp.Method): void {
+    const DownloadHandler = Il2Cpp.domain
       .assembly("UnityEngine.UnityWebRequestModule")
       .image.class("UnityEngine.Networking.DownloadHandler");
+    const UploadHandler = Il2Cpp.domain
+      .assembly("UnityEngine.UnityWebRequestModule")
+      .image.class("UnityEngine.Networking.UploadHandler");
 
-    const ctorUrlDownloadHandlerUploadHandler = ctorMethods.tryOverload(
-      "System.String",
-      "System.String",
-      DownloadHandlerClass.fullName,
-      UploadHandlerClass.fullName
+    const overload = ctor.tryOverload(
+      "System.String", "System.String",
+      DownloadHandler.fullName, UploadHandler.fullName
     );
+    if (!overload) return;
 
-    if (ctorUrlDownloadHandlerUploadHandler) {
-      ctorUrlDownloadHandlerUploadHandler.implementation = function (
-        this,
-        ...parameters: Il2Cpp.Parameter.Type[]
-      ) {
-        return this.method(".ctor")
-          .overload(
-            "System.String",
-            "System.String",
-            DownloadHandlerClass.fullName,
-            UploadHandlerClass.fullName
-          )
-          .invoke(Il2Cpp.string(Config.MOCKUP_SERVER), ...parameters.slice(1));
-      };
-      Logger.success(
-        "UnityWebRequestPlatform (String,String,DownloadHandler,UploadHandler) constructor handler enabled."
-      );
-    }
+    overload.implementation = function (this, ...params: Il2Cpp.Parameter.Type[]) {
+      const mockUrl = Il2Cpp.string(Config.MOCKUP_SERVER);
 
-    if (CHANGE_DATA) {
-      this.setUploadHandlerHandler(UnityWebRequest);
-      Logger.info("UnityWebRequestPlaform data changing activated.");
-    }
+      return this.method(".ctor")
+        .overload("System.String", "System.String", DownloadHandler.fullName, UploadHandler.fullName)
+        .invoke(mockUrl, params[1], params[2], params[3]);
+    };
 
-    this.setUrlHandler(UnityWebRequest);
-
-    const duration = Date.now() - start;
-    Config.TELEMETRY && Logger.info("Injection time: " + duration + "ms");
-    return;
+    Logger.success("Hooked .ctor(String, String, DownloadHandler, UploadHandler)");
   }
-  // #endregion
 
-  private setUploadHandlerHandler(UnityWebRequestClass: Il2Cpp.Class) {
-    const setUploadHandlerMethod =
-      UnityWebRequestClass.tryMethod("set_uploadHandler");
-    if (!setUploadHandlerMethod) {
-      Logger.error("SetUploadHandler method not found in UnityWebRequest.");
+  // ──────────────────────────────────────────────
+  // SETTER HOOKS
+  // ──────────────────────────────────────────────
+
+  /**
+   * Hook: request.url = "..."
+   * Forces every URL assignment to point to mock server.
+   */
+  private hookSetUrl(cls: Il2Cpp.Class): void {
+    const method = cls.tryMethod("set_url");
+    if (!method) {
+      Logger.error("set_url not found.");
       return;
     }
-    setUploadHandlerMethod.implementation = function (this) {
-      // Check if the first parameter is an instance of UploadHandlerRaw
-      const uploadHandlerRawClass = Il2Cpp.domain
+
+    method.implementation = function (this) {
+      const mockUrl = Il2Cpp.string(Config.MOCKUP_SERVER);
+      return this.method("set_url").invoke(mockUrl);
+    };
+
+    Logger.success("Hooked set_url");
+  }
+
+  /**
+   * Hook: request.uploadHandler = handler
+   * Replaces the upload payload with a custom JSON body:
+   *   { "AYBU": "VR SECTEAM" }
+   *
+   * This demonstrates that outgoing data can be fully controlled.
+   */
+  private hookSetUploadHandler(cls: Il2Cpp.Class): void {
+    const method = cls.tryMethod("set_uploadHandler");
+    if (!method) {
+      Logger.error("set_uploadHandler not found.");
+      return;
+    }
+
+    method.implementation = function (this) {
+      // Build custom JSON payload as byte array:  { "AYBU": "VR SECTEAM" }
+      const jsonBytes = [
+        123, 10, 34, 65, 89, 66, 85, 34, 58, 34, 86, 82, 32,
+        83, 69, 67, 84, 69, 65, 77, 34, 10, 125
+      ];
+
+      const payload = Il2Cpp.array<number>(
+        Il2Cpp.corlib.class("System.Byte"),
+        jsonBytes
+      );
+
+      // Create a new UploadHandlerRaw with our payload
+      const rawHandlerClass = Il2Cpp.domain
         .assembly("UnityEngine.UnityWebRequestModule")
         .image.class("UnityEngine.Networking.UploadHandlerRaw");
 
-      if (!uploadHandlerRawClass) {
-        Logger.error("UploadHandlerRaw class not found.");
-        return;
-      }
-
-      // Define your custom payload (data to upload)
-      const payload = Il2Cpp.array<number>(
-        Il2Cpp.corlib.class("System.Byte"),
-        [
-          123, 10, 34, 65, 89, 66, 85, 34, 58, 34, 86, 82, 32, 83, 69, 67, 84,
-          69, 65, 77, 34, 10, 125,
-        ]
-      );
-
-      // Create a new UploadHandlerRaw instance with the custom payload
-      const newUploadHandler = uploadHandlerRawClass.alloc(); // Allocate memory for the object
-      const uploadHandlerRawCtor = newUploadHandler.tryMethod(".ctor");
-      if (!uploadHandlerRawCtor) {
+      const handler = rawHandlerClass.alloc();
+      const handlerCtor = handler.tryMethod(".ctor");
+      if (!handlerCtor) {
         Logger.error("UploadHandlerRaw constructor not found.");
         return;
       }
-      uploadHandlerRawCtor.invoke(payload); // Call the constructor on the allocated object
+      handlerCtor.invoke(payload);
 
-      Logger.info("Custom UploadHandlerRaw created with payload.");
+      Logger.info("Injected custom upload payload.");
 
-      // Replace the original upload handler with the new one
-      return this.method("set_uploadHandler").invoke(
-        newUploadHandler as Il2Cpp.Parameter.Type
-      );
+      // Replace original handler with ours
+      return this.method("set_uploadHandler").invoke(handler as Il2Cpp.Parameter.Type);
     };
-  }
-
-  private setUrlHandler(UnityWebRequestClass: Il2Cpp.Class) {
-    const setUrlMethod = UnityWebRequestClass.tryMethod("set_url");
-    if (!setUrlMethod) {
-      Logger.error("set_url method not found in UnityWebRequest.");
-      return;
-    }
-
-    setUrlMethod.implementation = function (
-      this,
-      ...parameters: Il2Cpp.Parameter.Type[]
-    ) {
-      const url = Il2Cpp.string(Config.MOCKUP_SERVER);
-      return this.method("set_url").invoke(url);
-    };
-    Logger.success("UnityWebRequestPlatform set_url handler enabled.");
   }
 }
