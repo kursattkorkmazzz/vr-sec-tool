@@ -1,0 +1,18 @@
+Timestamp,DeviceID,PackageName,CPU_Usage (%),Memory_Usage_PSS (KB)
+2025-05-31 14:42:27,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,71.4,981189
+2025-05-31 14:42:28,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,67.8,980803
+2025-05-31 14:42:28,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,980779
+2025-05-31 14:42:29,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,70.3,980798
+2025-05-31 14:42:30,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,75.0,980807
+2025-05-31 14:42:30,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,980976
+2025-05-31 14:42:31,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,981095
+2025-05-31 14:42:31,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,67.8,980809
+2025-05-31 14:42:32,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,980779
+2025-05-31 14:42:32,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,980799
+2025-05-31 14:42:33,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,71.4,980788
+2025-05-31 14:42:34,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,980817
+2025-05-31 14:42:34,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,980819
+2025-05-31 14:42:35,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,980808
+2025-05-31 14:42:35,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,70.3,980808
+2025-05-31 14:42:36,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,74.0,980799
+2025-05-31 14:42:36,1WMHHA4CHY2136,com.StudioGamebit.AgentSimulator,67.8,980813

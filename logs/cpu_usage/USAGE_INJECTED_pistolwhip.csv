@@ -1,0 +1,17 @@
+Timestamp,DeviceID,PackageName,CPU_Usage (%),Memory_Usage_PSS (KB)
+2025-05-31 15:16:33,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,75.8,2798144
+2025-05-31 15:16:34,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,75.0,2800640
+2025-05-31 15:16:34,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,77.7,2800654
+2025-05-31 15:16:35,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,96.2,2800796
+2025-05-31 15:16:35,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,81.4,2800304
+2025-05-31 15:16:36,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,78.5,2799459
+2025-05-31 15:16:37,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,75.0,2799475
+2025-05-31 15:16:37,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,75.0,2798297
+2025-05-31 15:16:38,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,75.0,2798603
+2025-05-31 15:16:38,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,81.4,2798567
+2025-05-31 15:16:39,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,81.4,2798475
+2025-05-31 15:16:40,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,77.7,2798483
+2025-05-31 15:16:40,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,78.5,2798361
+2025-05-31 15:16:41,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,77.7,2798398
+2025-05-31 15:16:41,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,77.7,2798402
+2025-05-31 15:16:42,1WMHHA4CHY2136,com.cloudheadgames.pistolwhip,77.7,2798410

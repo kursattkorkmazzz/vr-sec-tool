@@ -1,0 +1,18 @@
+Timestamp,DeviceID,PackageName,CPU_Usage (%),Memory_Usage_PSS (KB)
+2025-05-31 15:09:33,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,96.4,986049
+2025-05-31 15:09:34,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,100,987021
+2025-05-31 15:09:34,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,96.4,986999
+2025-05-31 15:09:35,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,96.4,987011
+2025-05-31 15:09:35,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,89.2,987022
+2025-05-31 15:09:36,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,96.4,987033
+2025-05-31 15:09:37,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,92.5,987036
+2025-05-31 15:09:37,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,96.4,987177
+2025-05-31 15:09:38,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,107,987149
+2025-05-31 15:09:38,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,100,987135
+2025-05-31 15:09:39,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,96.4,987138
+2025-05-31 15:09:39,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,92.8,987151
+2025-05-31 15:09:40,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,100,987146
+2025-05-31 15:09:41,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,89.6,987138
+2025-05-31 15:09:41,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,100,987166
+2025-05-31 15:09:42,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,92.5,987162
+2025-05-31 15:09:42,1WMHHA4CHY2136,com.owlchemylabs.jobsimulator,96.4,987169

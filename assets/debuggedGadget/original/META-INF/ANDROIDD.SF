@@ -1,0 +1,65 @@
+Signature-Version: 1.0
+Created-By: 1.0 (Android)
+SHA-256-Digest-Manifest: COJNR9Pkn2dUVKt4NrTbCF6ktHhauLJ4JhmXa6M+Zr4=
+X-Android-APK-Signed: 2, 3
+
+Name: AndroidManifest.xml
+SHA-256-Digest: O/jMP4zgiT++BuFgsXy6i5Mx53o1LxR0s7XcLtbcWhU=
+
+Name: assets/bin/Data/Managed/Metadata/global-metadata.dat
+SHA-256-Digest: AR8AunbqDQz7e1Cbh95tvOLbyBLbOBKnE+dKp+FgU34=
+
+Name: assets/bin/Data/Managed/Resources/mscorlib.dll-resources.dat
+SHA-256-Digest: YDrQxP+U0yOIvIJbkgQiTKYFz7XPWoekRyh24ezbP20=
+
+Name: assets/bin/Data/RuntimeInitializeOnLoads.json
+SHA-256-Digest: iC+7yyPfxMirvtPdFTh9I2G9zWnwC9llaCX13WXbNPU=
+
+Name: assets/bin/Data/ScriptingAssemblies.json
+SHA-256-Digest: RuX8rW1PCkDKJ/uLkw6hIdQvp1QwsttiyoV9vaHRQzA=
+
+Name: assets/bin/Data/boot.config
+SHA-256-Digest: IjS00HFaPdd1SA8kcF41oSCLQHcRnV6QsIuWgixoXkw=
+
+Name: assets/bin/Data/data.unity3d
+SHA-256-Digest: C82Q1GDJeVw704TWSFNGvBVsS/8mPi31oiyowsET/is=
+
+Name: assets/bin/Data/unity default resources
+SHA-256-Digest: wJfyRElZag48RfmmbAO9bxVzDsUPuVrrY6khqLGV6ZQ=
+
+Name: assets/bin/Data/unity_app_guid
+SHA-256-Digest: Mof62FdwgWqld1DZmNVRjQdl02us7wFqsXiekmltVVs=
+
+Name: classes.dex
+SHA-256-Digest: zFGP9YA/6H+7EVsc2Gs3i1IJYTMfsOXjAgqUBo5il6A=
+
+Name: lib/arm64-v8a/libfrida-gadget-16.5.2-android-arm64.so
+SHA-256-Digest: onWIMLxI7vDCvHKsUefnonEhoRgrGTHGCJHIXY2eTs0=
+
+Name: lib/arm64-v8a/libil2cpp.so
+SHA-256-Digest: kUQKpElGDra+PBdjP+SdEP7aJk4XKVBQGLQnpP8VZvg=
+
+Name: lib/arm64-v8a/libmain.so
+SHA-256-Digest: eM30i3JwSP+FjQ3wQJx5aRQdj1q6Bt6KCNfIbGcCchI=
+
+Name: lib/arm64-v8a/libunity.so
+SHA-256-Digest: cMMY6RhmkRo8Ir9DsVdGEU40RDCRtMLoExADRUaU940=
+
+Name: res/mipmap-anydpi/app_icon.xml
+SHA-256-Digest: 1lh1vjQHEh0ULCLoy/axbgQApwHNezQFghHOH3GHmnM=
+
+Name: res/mipmap-anydpi/app_icon_round.xml
+SHA-256-Digest: GxA+w7hdrAGG7DfFNuhmGXSewI/uIgt2QmT12+w0ag4=
+
+Name: res/mipmap-mdpi/app_icon.png
+SHA-256-Digest: SSJU007ek/Ulwn/1Q8vobANgt64w4NrB35jN0WocXz4=
+
+Name: res/mipmap-mdpi/ic_launcher_background.png
+SHA-256-Digest: 6b9iSDFU46zgnUvozcuIASonbN6hu77cdxvB2MhXeHM=
+
+Name: res/mipmap-mdpi/ic_launcher_foreground.png
+SHA-256-Digest: xtUQfHntqW8dk/K7TVGEwtBgipJpqiQNWLKhMuuQtSQ=
+
+Name: resources.arsc
+SHA-256-Digest: AHX/y2/xdeQh0IMq2C8i3BTIRiY+AaCKunXxhBwNsls=
+

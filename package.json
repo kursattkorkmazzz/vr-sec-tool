@@ -1,0 +1,23 @@
+{
+  "name": "vr-sec-tool",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "esbuild ./src/main.ts --bundle  --platform=node  --outfile=./dist/main-esbuild.js",
+    "watch": "esbuild ./src/main.ts --bundle --platform=node --outfile=./dist/main-esbuild.js --watch --allow-overwrite",
+    "frida": "frida -U -f re.frida.Gadget -l ./dist/main-esbuild.js",
+    "frida-log": "frida -U -f re.frida.Gadget -l ./dist/main-esbuild.js 2>&1 | tee ./logs/log.txt"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@frida/url": "^1.0.2",
+    "@types/frida-gum": "^18.7.1",
+    "@types/node": "^22.10.0",
+    "frida-il2cpp-bridge": "^0.9.1",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  }
+}
